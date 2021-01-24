@@ -24,4 +24,13 @@ const checkGroup = sudokuString => {
     return checkForDuplicates(numbers);
 };
 
-module.exports = { validateSudokuFile, validateSudokuString, sudokuFileToString, checkGroup }
+const getGroup = ({ groupType, searchCode, puzzleString }) => rules => {
+    if(!rules.groupTypes.includes(groupType)) throw 'Provide a valid group type.';
+    if(!rules[groupType].includes(searchCode)) throw 'Provide a valid search code.';
+    const relevantCells = Object.values(rules.cells).filter(x => x[groupType] === searchCode);
+    const stringIndexes = relevantCells.map(x => x.stringEncoding);
+    const groupString = stringIndexes.map(x => puzzleString[x]);
+    return groupString;
+};
+
+module.exports = { validateSudokuFile, validateSudokuString, sudokuFileToString, checkGroup, getGroup }

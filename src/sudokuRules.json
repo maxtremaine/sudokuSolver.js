@@ -5,7 +5,7 @@
             "col": "a",
             "row": "1",
             "box": "b2",
-            "gridEncoding": 0,
+            "stringEncoding": 0,
             "fileEncoding": 16
         },
         "b1": {
@@ -13,7 +13,7 @@
             "col": "b",
             "row": "1",
             "box": "b2",
-            "gridEncoding": 1,
+            "stringEncoding": 1,
             "fileEncoding": 17
         },
         "c1": {
@@ -21,7 +21,7 @@
             "col": "c",
             "row": "1",
             "box": "b2",
-            "gridEncoding": 2,
+            "stringEncoding": 2,
             "fileEncoding": 18
         },
         "d1": {
@@ -29,7 +29,7 @@
             "col": "d",
             "row": "1",
             "box": "e2",
-            "gridEncoding": 3,
+            "stringEncoding": 3,
             "fileEncoding": 20
         },
         "e1": {
@@ -37,7 +37,7 @@
             "col": "e",
             "row": "1",
             "box": "e2",
-            "gridEncoding": 4,
+            "stringEncoding": 4,
             "fileEncoding": 21
         },
         "f1": {
@@ -45,7 +45,7 @@
             "col": "f",
             "row": "1",
             "box": "e2",
-            "gridEncoding": 5,
+            "stringEncoding": 5,
             "fileEncoding": 22
         },
         "g1": {
@@ -53,7 +53,7 @@
             "col": "g",
             "row": "1",
             "box": "h2",
-            "gridEncoding": 6,
+            "stringEncoding": 6,
             "fileEncoding": 24
         },
         "h1": {
@@ -61,7 +61,7 @@
             "col": "h",
             "row": "1",
             "box": "h2",
-            "gridEncoding": 7,
+            "stringEncoding": 7,
             "fileEncoding": 25
         },
         "i1": {
@@ -69,7 +69,7 @@
             "col": "i",
             "row": "1",
             "box": "h2",
-            "gridEncoding": 8,
+            "stringEncoding": 8,
             "fileEncoding": 26
         },
         "a2": {
@@ -77,7 +77,7 @@
             "col": "a",
             "row": "2",
             "box": "b2",
-            "gridEncoding": 9,
+            "stringEncoding": 9,
             "fileEncoding": 30
         },
         "b2": {
@@ -85,7 +85,7 @@
             "col": "b",
             "row": "2",
             "box": "b2",
-            "gridEncoding": 10,
+            "stringEncoding": 10,
             "fileEncoding": 31
         },
         "c2": {
@@ -93,7 +93,7 @@
             "col": "c",
             "row": "2",
             "box": "b2",
-            "gridEncoding": 11,
+            "stringEncoding": 11,
             "fileEncoding": 32
         },
         "d2": {
@@ -101,7 +101,7 @@
             "col": "d",
             "row": "2",
             "box": "e2",
-            "gridEncoding": 12,
+            "stringEncoding": 12,
             "fileEncoding": 34
         },
         "e2": {
@@ -109,7 +109,7 @@
             "col": "e",
             "row": "2",
             "box": "e2",
-            "gridEncoding": 13,
+            "stringEncoding": 13,
             "fileEncoding": 35
         },
         "f2": {
@@ -117,7 +117,7 @@
             "col": "f",
             "row": "2",
             "box": "e2",
-            "gridEncoding": 14,
+            "stringEncoding": 14,
             "fileEncoding": 36
         },
         "g2": {
@@ -125,7 +125,7 @@
             "col": "g",
             "row": "2",
             "box": "h2",
-            "gridEncoding": 15,
+            "stringEncoding": 15,
             "fileEncoding": 38
         },
         "h2": {
@@ -133,7 +133,7 @@
             "col": "h",
             "row": "2",
             "box": "h2",
-            "gridEncoding": 16,
+            "stringEncoding": 16,
             "fileEncoding": 39
         },
         "i2": {
@@ -141,7 +141,7 @@
             "col": "i",
             "row": "2",
             "box": "h2",
-            "gridEncoding": 17,
+            "stringEncoding": 17,
             "fileEncoding": 40
         },
         "a3": {
@@ -149,7 +149,7 @@
             "col": "a",
             "row": "3",
             "box": "b2",
-            "gridEncoding": 18,
+            "stringEncoding": 18,
             "fileEncoding": 44
         },
         "b3": {
@@ -157,7 +157,7 @@
             "col": "b",
             "row": "3",
             "box": "b2",
-            "gridEncoding": 19,
+            "stringEncoding": 19,
             "fileEncoding": 45
         },
         "c3": {
@@ -165,7 +165,7 @@
             "col": "c",
             "row": "3",
             "box": "b2",
-            "gridEncoding": 20,
+            "stringEncoding": 20,
             "fileEncoding": 46
         },
         "d3": {
@@ -173,7 +173,7 @@
             "col": "d",
             "row": "3",
             "box": "e2",
-            "gridEncoding": 21,
+            "stringEncoding": 21,
             "fileEncoding": 48
         },
         "e3": {
@@ -181,7 +181,7 @@
             "col": "e",
             "row": "3",
             "box": "e2",
-            "gridEncoding": 22,
+            "stringEncoding": 22,
             "fileEncoding": 49
         },
         "f3": {
@@ -189,7 +189,7 @@
             "col": "f",
             "row": "3",
             "box": "e2",
-            "gridEncoding": 23,
+            "stringEncoding": 23,
             "fileEncoding": 50
         },
         "g3": {
@@ -197,7 +197,7 @@
             "col": "g",
             "row": "3",
             "box": "h2",
-            "gridEncoding": 24,
+            "stringEncoding": 24,
             "fileEncoding": 52
         },
         "h3": {
@@ -205,7 +205,7 @@
             "col": "h",
             "row": "3",
             "box": "h2",
-            "gridEncoding": 25,
+            "stringEncoding": 25,
             "fileEncoding": 53
         },
         "i3": {
@@ -213,7 +213,7 @@
             "col": "i",
             "row": "3",
             "box": "h2",
-            "gridEncoding": 26,
+            "stringEncoding": 26,
             "fileEncoding": 54
         },
         "a4": {
@@ -221,7 +221,7 @@
             "col": "a",
             "row": "4",
             "box": "b5",
-            "gridEncoding": 27,
+            "stringEncoding": 27,
             "fileEncoding": 72
         },
         "b4": {
@@ -229,7 +229,7 @@
             "col": "b",
             "row": "4",
             "box": "b5",
-            "gridEncoding": 28,
+            "stringEncoding": 28,
             "fileEncoding": 73
         },
         "c4": {
@@ -237,7 +237,7 @@
             "col": "c",
             "row": "4",
             "box": "b5",
-            "gridEncoding": 29,
+            "stringEncoding": 29,
             "fileEncoding": 74
         },
         "d4": {
@@ -245,7 +245,7 @@
             "col": "d",
             "row": "4",
             "box": "e5",
-            "gridEncoding": 30,
+            "stringEncoding": 30,
             "fileEncoding": 76
         },
         "e4": {
@@ -253,7 +253,7 @@
             "col": "e",
             "row": "4",
             "box": "e5",
-            "gridEncoding": 31,
+            "stringEncoding": 31,
             "fileEncoding": 77
         },
         "f4": {
@@ -261,7 +261,7 @@
             "col": "f",
             "row": "4",
             "box": "e5",
-            "gridEncoding": 32,
+            "stringEncoding": 32,
             "fileEncoding": 78
         },
         "g4": {
@@ -269,7 +269,7 @@
             "col": "g",
             "row": "4",
             "box": "h5",
-            "gridEncoding": 33,
+            "stringEncoding": 33,
             "fileEncoding": 80
         },
         "h4": {
@@ -277,7 +277,7 @@
             "col": "h",
             "row": "4",
             "box": "h5",
-            "gridEncoding": 34,
+            "stringEncoding": 34,
             "fileEncoding": 81
         },
         "i4": {
@@ -285,7 +285,7 @@
             "col": "i",
             "row": "4",
             "box": "h5",
-            "gridEncoding": 35,
+            "stringEncoding": 35,
             "fileEncoding": 82
         },
         "a5": {
@@ -293,7 +293,7 @@
             "col": "a",
             "row": "5",
             "box": "b5",
-            "gridEncoding": 36,
+            "stringEncoding": 36,
             "fileEncoding": 86
         },
         "b5": {
@@ -301,7 +301,7 @@
             "col": "b",
             "row": "5",
             "box": "b5",
-            "gridEncoding": 37,
+            "stringEncoding": 37,
             "fileEncoding": 87
         },
         "c5": {
@@ -309,7 +309,7 @@
             "col": "c",
             "row": "5",
             "box": "b5",
-            "gridEncoding": 38,
+            "stringEncoding": 38,
             "fileEncoding": 88
         },
         "d5": {
@@ -317,7 +317,7 @@
             "col": "d",
             "row": "5",
             "box": "e5",
-            "gridEncoding": 39,
+            "stringEncoding": 39,
             "fileEncoding": 90
         },
         "e5": {
@@ -325,7 +325,7 @@
             "col": "e",
             "row": "5",
             "box": "e5",
-            "gridEncoding": 40,
+            "stringEncoding": 40,
             "fileEncoding": 91
         },
         "f5": {
@@ -333,7 +333,7 @@
             "col": "f",
             "row": "5",
             "box": "e5",
-            "gridEncoding": 41,
+            "stringEncoding": 41,
             "fileEncoding": 92
         },
         "g5": {
@@ -341,7 +341,7 @@
             "col": "g",
             "row": "5",
             "box": "h5",
-            "gridEncoding": 42,
+            "stringEncoding": 42,
             "fileEncoding": 94
         },
         "h5": {
@@ -349,7 +349,7 @@
             "col": "h",
             "row": "5",
             "box": "h5",
-            "gridEncoding": 43,
+            "stringEncoding": 43,
             "fileEncoding": 95
         },
         "i5": {
@@ -357,7 +357,7 @@
             "col": "i",
             "row": "5",
             "box": "h5",
-            "gridEncoding": 44,
+            "stringEncoding": 44,
             "fileEncoding": 96
         },
         "a6": {
@@ -365,7 +365,7 @@
             "col": "a",
             "row": "6",
             "box": "b5",
-            "gridEncoding": 45,
+            "stringEncoding": 45,
             "fileEncoding": 100
         },
         "b6": {
@@ -373,7 +373,7 @@
             "col": "b",
             "row": "6",
             "box": "b5",
-            "gridEncoding": 46,
+            "stringEncoding": 46,
             "fileEncoding": 101
         },
         "c6": {
@@ -381,7 +381,7 @@
             "col": "c",
             "row": "6",
             "box": "b5",
-            "gridEncoding": 47,
+            "stringEncoding": 47,
             "fileEncoding": 102
         },
         "d6": {
@@ -389,7 +389,7 @@
             "col": "d",
             "row": "6",
             "box": "e5",
-            "gridEncoding": 48,
+            "stringEncoding": 48,
             "fileEncoding": 104
         },
         "e6": {
@@ -397,7 +397,7 @@
             "col": "e",
             "row": "6",
             "box": "e5",
-            "gridEncoding": 49,
+            "stringEncoding": 49,
             "fileEncoding": 105
         },
         "f6": {
@@ -405,7 +405,7 @@
             "col": "f",
             "row": "6",
             "box": "e5",
-            "gridEncoding": 50,
+            "stringEncoding": 50,
             "fileEncoding": 106
         },
         "g6": {
@@ -413,7 +413,7 @@
             "col": "g",
             "row": "6",
             "box": "h5",
-            "gridEncoding": 51,
+            "stringEncoding": 51,
             "fileEncoding": 108
         },
         "h6": {
@@ -421,7 +421,7 @@
             "col": "h",
             "row": "6",
             "box": "h5",
-            "gridEncoding": 52,
+            "stringEncoding": 52,
             "fileEncoding": 109
         },
         "i6": {
@@ -429,7 +429,7 @@
             "col": "i",
             "row": "6",
             "box": "h5",
-            "gridEncoding": 53,
+            "stringEncoding": 53,
             "fileEncoding": 110
         },
         "a7": {
@@ -437,7 +437,7 @@
             "col": "a",
             "row": "7",
             "box": "b8",
-            "gridEncoding": 54,
+            "stringEncoding": 54,
             "fileEncoding": 128
         },
         "b7": {
@@ -445,7 +445,7 @@
             "col": "b",
             "row": "7",
             "box": "b8",
-            "gridEncoding": 55,
+            "stringEncoding": 55,
             "fileEncoding": 129
         },
         "c7": {
@@ -453,7 +453,7 @@
             "col": "c",
             "row": "7",
             "box": "b8",
-            "gridEncoding": 56,
+            "stringEncoding": 56,
             "fileEncoding": 130
         },
         "d7": {
@@ -461,7 +461,7 @@
             "col": "d",
             "row": "7",
             "box": "e8",
-            "gridEncoding": 57,
+            "stringEncoding": 57,
             "fileEncoding": 132
         },
         "e7": {
@@ -469,7 +469,7 @@
             "col": "e",
             "row": "7",
             "box": "e8",
-            "gridEncoding": 58,
+            "stringEncoding": 58,
             "fileEncoding": 133
         },
         "f7": {
@@ -477,7 +477,7 @@
             "col": "f",
             "row": "7",
             "box": "e8",
-            "gridEncoding": 59,
+            "stringEncoding": 59,
             "fileEncoding": 134
         },
         "g7": {
@@ -485,7 +485,7 @@
             "col": "g",
             "row": "7",
             "box": "h8",
-            "gridEncoding": 60,
+            "stringEncoding": 60,
             "fileEncoding": 136
         },
         "h7": {
@@ -493,7 +493,7 @@
             "col": "h",
             "row": "7",
             "box": "h8",
-            "gridEncoding": 61,
+            "stringEncoding": 61,
             "fileEncoding": 137
         },
         "i7": {
@@ -501,7 +501,7 @@
             "col": "i",
             "row": "7",
             "box": "h8",
-            "gridEncoding": 62,
+            "stringEncoding": 62,
             "fileEncoding": 138
         },
         "a8": {
@@ -509,7 +509,7 @@
             "col": "a",
             "row": "8",
             "box": "b8",
-            "gridEncoding": 63,
+            "stringEncoding": 63,
             "fileEncoding": 142
         },
         "b8": {
@@ -517,7 +517,7 @@
             "col": "b",
             "row": "8",
             "box": "b8",
-            "gridEncoding": 64,
+            "stringEncoding": 64,
             "fileEncoding": 143
         },
         "c8": {
@@ -525,7 +525,7 @@
             "col": "c",
             "row": "8",
             "box": "b8",
-            "gridEncoding": 65,
+            "stringEncoding": 65,
             "fileEncoding": 144
         },
         "d8": {
@@ -533,7 +533,7 @@
             "col": "d",
             "row": "8",
             "box": "e8",
-            "gridEncoding": 66,
+            "stringEncoding": 66,
             "fileEncoding": 146
         },
         "e8": {
@@ -541,7 +541,7 @@
             "col": "e",
             "row": "8",
             "box": "e8",
-            "gridEncoding": 67,
+            "stringEncoding": 67,
             "fileEncoding": 147
         },
         "f8": {
@@ -549,7 +549,7 @@
             "col": "f",
             "row": "8",
             "box": "e8",
-            "gridEncoding": 68,
+            "stringEncoding": 68,
             "fileEncoding": 148
         },
         "g8": {
@@ -557,7 +557,7 @@
             "col": "g",
             "row": "8",
             "box": "h8",
-            "gridEncoding": 69,
+            "stringEncoding": 69,
             "fileEncoding": 150
         },
         "h8": {
@@ -565,7 +565,7 @@
             "col": "h",
             "row": "8",
             "box": "h8",
-            "gridEncoding": 70,
+            "stringEncoding": 70,
             "fileEncoding": 151
         },
         "i8": {
@@ -573,7 +573,7 @@
             "col": "i",
             "row": "8",
             "box": "h8",
-            "gridEncoding": 71,
+            "stringEncoding": 71,
             "fileEncoding": 152
         },
         "a9": {
@@ -581,7 +581,7 @@
             "col": "a",
             "row": "9",
             "box": "b8",
-            "gridEncoding": 72,
+            "stringEncoding": 72,
             "fileEncoding": 156
         },
         "b9": {
@@ -589,7 +589,7 @@
             "col": "b",
             "row": "9",
             "box": "b8",
-            "gridEncoding": 73,
+            "stringEncoding": 73,
             "fileEncoding": 157
         },
         "c9": {
@@ -597,7 +597,7 @@
             "col": "c",
             "row": "9",
             "box": "b8",
-            "gridEncoding": 74,
+            "stringEncoding": 74,
             "fileEncoding": 158
         },
         "d9": {
@@ -605,7 +605,7 @@
             "col": "d",
             "row": "9",
             "box": "e8",
-            "gridEncoding": 75,
+            "stringEncoding": 75,
             "fileEncoding": 160
         },
         "e9": {
@@ -613,7 +613,7 @@
             "col": "e",
             "row": "9",
             "box": "e8",
-            "gridEncoding": 76,
+            "stringEncoding": 76,
             "fileEncoding": 161
         },
         "f9": {
@@ -621,7 +621,7 @@
             "col": "f",
             "row": "9",
             "box": "e8",
-            "gridEncoding": 77,
+            "stringEncoding": 77,
             "fileEncoding": 162
         },
         "g9": {
@@ -629,7 +629,7 @@
             "col": "g",
             "row": "9",
             "box": "h8",
-            "gridEncoding": 78,
+            "stringEncoding": 78,
             "fileEncoding": 164
         },
         "h9": {
@@ -637,7 +637,7 @@
             "col": "h",
             "row": "9",
             "box": "h8",
-            "gridEncoding": 79,
+            "stringEncoding": 79,
             "fileEncoding": 165
         },
         "i9": {
@@ -645,7 +645,7 @@
             "col": "i",
             "row": "9",
             "box": "h8",
-            "gridEncoding": 80,
+            "stringEncoding": 80,
             "fileEncoding": 166
         }
     },
