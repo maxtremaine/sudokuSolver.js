@@ -6,4 +6,4 @@ const countCharacterInString = c => str => {
 	return matches.length
 }
 
-export { pipe };
+export { countCharacterInString };
