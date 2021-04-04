@@ -6,4 +6,8 @@ const countCharacterInString = c => str => {
 	return matches.length
 }
 
-export { countCharacterInString };
+const changeCharacter = ({ index, value }) => st => (
+	st.slice(0, index) + value + st.slice(index + 1)
+);
+
+export { countCharacterInString, changeCharacter };

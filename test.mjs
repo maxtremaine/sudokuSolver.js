@@ -1,4 +1,8 @@
-import { countCharacterInString } from './src/components.mjs';
+import { readFile } from 'fs/promises';
+import { countCharacterInString, changeCharacter } from './src/components.mjs';
+import { validateSudokuString, validateSudokuFile } from './src/puzzle.mjs';
+
+const { emptyGrid } = JSON.parse(await readFile('./src/puzzleRules.json'));
 
 const assert = ({ fn, params, expected }) => fn(params) === expected;
 
@@ -11,7 +15,16 @@ const cases = [
 		name: 'countCharacterInString',
 		fn: countCharacterInString('a'),
 		params: 'waaw',
-		expected: 3
+		expected: 2
+	},
+	{
+		name: 'changeCharacter',
+		fn: changeCharacter({
+			index: 4,
+			value: 'a'
+		}),
+		params: 'something',
+		expected: 'someahing'
 	}
 ];
 
