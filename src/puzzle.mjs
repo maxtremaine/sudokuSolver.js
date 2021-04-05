@@ -8,9 +8,14 @@ const {
 
 // Validation
 
-const validateSudokuFile = sudokuString => {
+const validateSudokuFile = sudokuFile => {
 	const pattern = /^(\s|\n|\||_|-|[1-9]|[a-i]){167}$/
-	return sudokuString.match(pattern) === sudokuString
+	return sudokuFile.match(pattern) === sudokuFile
 }
 
-console.log(emptyGrid);
+const validateSudokuString = sudokuString => {
+	const pattern = /^(_|[1-9]){81}$/
+	return sudokuString.match(pattern) === sudokuString;
+}
+
+export { validateSudokuFile, validateSudokuString };
