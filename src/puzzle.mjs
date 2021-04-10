@@ -62,10 +62,12 @@ const getRelatedCells = cellIndex => {
 	return relatedGroups.flat();
 };
 
-const getRelatedNumbers = sudokuString => cellIndexes => {
-	const cellValues = cellIndexes.map(index => sudokuString[index]);
-	const cellNumbers = cellValues.filter(value => value !== '_');
-	return cellNumbers;
+const getRelatedNumbers = sudokuString => cellIndex => {
+	const cellIndexes = getRelatedCells(cellIndex);
+	const cellValues = cellIndexes.map(i => parseInt(sudokuString[i]))
+	const uniqueValues = new Set(cellValues);
+	uniqueValues.delete(NaN);
+	return Array.from(uniqueValues);
 };
 
 // Composites
