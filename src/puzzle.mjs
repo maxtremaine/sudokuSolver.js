@@ -3,6 +3,7 @@ import { readFile } from 'fs/promises';
 // Load Rules
 
 const {
+	cellCoordinates,
 	emptyGrid,
 	groups,
 	fileToStringConversionIndexes
@@ -15,6 +16,7 @@ const Cell = ({index, value, sudokuString}) => {
 	return {
 		index,
 		value,
+		coordinates: cellCoordinates[index],
 		relatedCells: getRelatedCells(index),
 		relatedValues,
 		possibleValues: missingDigits(relatedValues)
@@ -41,6 +43,14 @@ const sudokuFileToString = sudokuFile => {
 	return characterList.join('');
 }
 
+const stringToSudokuFile = sudokuString => {
+	const fileArray = emptyGrid;
+	fileToStringConversionIndexes.forEach((index, i) => {
+		fileArray[index] = sudokuString[i]
+	});
+	return fileArray.join('');
+};
+
 const getIndexedValues = sudokuString => indexes => (
 	indexes.map(index => sudokuString[index])
 );
@@ -64,7 +74,7 @@ const getRelatedCells = cellIndex => {
 
 const getRelatedNumbers = sudokuString => cellIndex => {
 	const cellIndexes = getRelatedCells(cellIndex);
-	const cellValues = cellIndexes.map(i => parseInt(sudokuString[i]))
+	const cellValues = cellIndexes.map(i => Number.parseInt(sudokuString[i]))
 	const uniqueValues = new Set(cellValues);
 	uniqueValues.delete(NaN);
 	return Array.from(uniqueValues);
@@ -87,4 +97,4 @@ const cellDegreesOfFreedom = index => sudokuString => {
 	return underscores.length;
 }
 
-export { Cell, sudokuFileToString, validateSudokuFile, validateSudokuString, validatePuzzle };
+export { Cell, sudokuFileToString, stringToSudokuFile, validateSudokuFile, validateSudokuString, validatePuzzle };

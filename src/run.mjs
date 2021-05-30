@@ -1,4 +1,4 @@
-import { Cell, sudokuFileToString, validateSudokuFile,
+import { Cell, sudokuFileToString, stringToSudokuFile, validateSudokuFile,
 	validateSudokuString, validatePuzzle } from './puzzle.mjs';
 import { changeCharacter, countCharacterInString } from './components.mjs';
 import { readFile } from 'fs/promises';
@@ -21,11 +21,13 @@ while(!solved) {
 	for(const thread of threads) {
 		const sortedUnderscores = Array.from(thread)
 			.map((char, i) => {
-				return char === '_' ? Cell({
+				if(char !== '_') return 'X';
+				const newCell = Cell({
 					index: i,
 					value: char,
 					sudokuString: thread
-				}) : 'X'
+				})
+				return newCell;
 			})
 			.filter(cell => cell !== 'X')
 			.sort((a, b) => (
@@ -36,17 +38,19 @@ while(!solved) {
 			newThreads = [ thread ];
 			break;
 		}
-		sortedUnderscores[0].possibleValues.forEach(possibleValue => {
-			const newThread = changeCharacter({
-				index: sortedUnderscores[0].index,
-				value: possibleValue
-			})(thread)
+		if(sortedUnderscores[0].possibleValues.length > 0) {
+			sortedUnderscores[0].possibleValues.forEach(possibleValue => {
+				const newThread = changeCharacter({
+					index: sortedUnderscores[0].index,
+					value: possibleValue
+				})(thread)
 
-			if(validatePuzzle(newThread)) newThreads.push(newThread);
-		});
+				newThreads.push(newThread);
+			});
+		}
 	}
 
 	threads = newThreads;
-	console.log(`${threads.length} threads.`)
+	console.log(`-${threads.length} threads.`)
 }
-console.log(threads[0])
+console.log(stringToSudokuFile(threads[0]))
