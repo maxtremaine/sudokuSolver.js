@@ -5,7 +5,7 @@
   "main": "start.mjs",
   "scripts": {
     "test": "mocha",
-    "start": "node start.mjs"
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",
