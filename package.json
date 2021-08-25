@@ -1,0 +1,25 @@
+{
+  "name": "sudokusolver",
+  "version": "1.0.0",
+  "description": "Solves sudoku, so I don't have to.",
+  "main": "main.mjs",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxtremaine/sudokuSolver.js.git"
+  },
+  "keywords": [
+    "Sudoku"
+  ],
+  "author": "Max Tremaine <tremaine@hey.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/maxtremaine/sudokuSolver.js/issues"
+  },
+  "homepage": "https://github.com/maxtremaine/sudokuSolver.js#readme",
+  "devDependencies": {
+    "mocha": "^9.1.0"
+  }
+}
