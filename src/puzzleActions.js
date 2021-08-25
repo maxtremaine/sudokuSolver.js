@@ -1,5 +1,4 @@
 const { emptyGrid, groups, fileToStringConversionIndexes } = require('./puzzleData').puzzleData
-const { replaceSubstring } = require('./pureFunctions')
 
 const sudokuFileToString = sudokuFile => {
     return fileToStringConversionIndexes
@@ -8,11 +7,11 @@ const sudokuFileToString = sudokuFile => {
 }
 
 const sudokuStringToFile = sudokuString =>  {
-    let emptyPuzzle = emptyGrid.join('')
-    fileToStringConversionIndexes.forEach(( index, n) => {
-        emptyPuzzle = replaceSubstring({ index, substring: sudokuString[n]})(emptyPuzzle)
+    const outputPuzzle = emptyGrid
+    fileToStringConversionIndexes.forEach(( index, n ) => {
+        outputPuzzle[index] = sudokuString[n]
     })
-    return emptyPuzzle
+    return outputPuzzle.join('')
 }
 
 module.exports = { sudokuFileToString, sudokuStringToFile }
