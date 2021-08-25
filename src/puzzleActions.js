@@ -7,7 +7,7 @@ const sudokuFileToString = sudokuFile => {
 }
 
 const sudokuStringToFile = sudokuString =>  {
-    const outputPuzzle = emptyGrid
+    const outputPuzzle = emptyGrid.slice()
     fileToStringConversionIndexes.forEach(( index, n ) => {
         outputPuzzle[index] = sudokuString[n]
     })
