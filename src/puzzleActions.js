@@ -44,4 +44,13 @@ const getRelatedCellIndexes = index => {
     return indexArray
 }
 
-module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes }
+const getCellValues = indexes => sudokuString => {
+    const numbers = indexes
+        .map(index => sudokuString[index])
+        .filter(value => value !== '_')
+    const outputArray = Array.from(new Set(numbers))
+    outputArray.sort()
+    return outputArray
+}
+
+module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues }

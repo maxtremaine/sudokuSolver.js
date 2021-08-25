@@ -1,5 +1,5 @@
 const { deepStrictEqual, ok } = require('assert')
-const { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes } = require('../src/puzzleActions')
+const { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues } = require('../src/puzzleActions')
 
 describe('Puzzle Actions', () => {
     const fileString = [
@@ -16,6 +16,8 @@ describe('Puzzle Actions', () => {
         '8 __8|___|4__',
         '9 6__|_2_|__8'].join('\n')
     const sudokuString = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
+    const validPuzzle = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
+    const invalidPuzzle = '77__4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
     
     it('Should convert a .sudoku file to a sudoku string.', () => {
         deepStrictEqual(sudokuFileToString(fileString), sudokuString)
@@ -26,8 +28,6 @@ describe('Puzzle Actions', () => {
     })
 
     it('Should check the validity of a sudoku puzzle.', () => {
-        const validPuzzle = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
-        const invalidPuzzle = '77__4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
         ok(isValidPuzzle(validPuzzle))
         ok(!isValidPuzzle(invalidPuzzle))
     })
@@ -35,5 +35,9 @@ describe('Puzzle Actions', () => {
     it('Should get cell indexes related to a specific cell index.', () => {
         const relatedToZero = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 18, 19, 20, 27, 36, 45, 54, 63, 72 ]
         deepStrictEqual(getRelatedCellIndexes(0), relatedToZero)
+    })
+
+    it('Should get cell values from a sudoku string given an array of indexes.', () => {
+        deepStrictEqual(getCellValues([0, 2, 4])(validPuzzle), ['4', '7'])
     })
 })
