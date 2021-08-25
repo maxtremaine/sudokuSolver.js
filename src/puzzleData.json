@@ -1,6 +1,6 @@
 {
-    "puzzle_data": {
-        "empty_grid": [
+    "puzzleData": {
+        "emptyGrid": [
             " ",
             " ",
             "a",
@@ -468,7 +468,7 @@
                 80
             ]
         ],
-        "file_to_string_conversion_indexes": [
+        "fileToStringConversionIndexes": [
             16,
             17,
             18,
