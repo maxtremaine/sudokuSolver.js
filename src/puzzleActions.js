@@ -16,4 +16,16 @@ const sudokuStringToFile = sudokuString =>  {
     return outputPuzzle.join('')
 }
 
-module.exports = { sudokuFileToString, sudokuStringToFile }
+// Assertion
+
+const isValidPuzzle = sudokuString => {
+    for(const group of groups) {
+        const values = group
+            .map(index => sudokuString[index])
+            .filter(value => value !== '_')
+        if(values.length !== (new Set(values)).size) return false
+    }
+    return true
+}
+
+module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle }

@@ -1,5 +1,5 @@
-const { deepStrictEqual } = require('assert')
-const { sudokuFileToString, sudokuStringToFile } = require('../src/puzzleActions')
+const { deepStrictEqual, ok } = require('assert')
+const { sudokuFileToString, sudokuStringToFile, isValidPuzzle } = require('../src/puzzleActions')
 
 describe('Puzzle Actions', () => {
     const fileString = [
@@ -23,5 +23,12 @@ describe('Puzzle Actions', () => {
 
     it('Should convert a sudoku string to a .sudoku file.', () => {
         deepStrictEqual(sudokuStringToFile(sudokuString), fileString)
+    })
+
+    it('Should check the validity of a sudoku puzzle.', () => {
+        const validPuzzle = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
+        const invalidPuzzle = '77__4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
+        ok(isValidPuzzle(validPuzzle))
+        ok(!isValidPuzzle(invalidPuzzle))
     })
 })
