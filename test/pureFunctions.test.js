@@ -1,7 +1,7 @@
 const { deepStrictEqual } = require('assert')
 const { getMissingDigits, replaceSubstring } = require('../src/pureFunctions')
 
-describe('pureFunctions.js', () => {
+describe('Pure Functions', () => {
     it('Should return the missing digits given an array of digits as strings.', () => {
         deepStrictEqual(getMissingDigits(['1', '2', '3']), ['4', '5', '6', '7', '8', '9'])
         deepStrictEqual(getMissingDigits(['a', '5', '6', '3']), ['1', '2', '4', '7', '8', '9'])
