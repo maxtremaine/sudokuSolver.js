@@ -1,7 +1,7 @@
 const { ok } = require('assert')
 const { isSudokuFile, isSudokuString } = require('../src/assertions')
 
-describe('assertions', () => {
+describe('assertions.js', () => {
     it('Should check that a string is a .sudoku file.', () => {
         const validFile = [
             '  abc def ghi',
