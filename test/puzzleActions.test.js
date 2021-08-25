@@ -1,5 +1,5 @@
 const { deepStrictEqual, ok } = require('assert')
-const { sudokuFileToString, sudokuStringToFile, isValidPuzzle } = require('../src/puzzleActions')
+const { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes } = require('../src/puzzleActions')
 
 describe('Puzzle Actions', () => {
     const fileString = [
@@ -30,5 +30,10 @@ describe('Puzzle Actions', () => {
         const invalidPuzzle = '77__4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
         ok(isValidPuzzle(validPuzzle))
         ok(!isValidPuzzle(invalidPuzzle))
+    })
+
+    it('Should get cell indexes related to a specific cell index.', () => {
+        const relatedToZero = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 18, 19, 20, 27, 36, 45, 54, 63, 72 ]
+        deepStrictEqual(getRelatedCellIndexes(0), relatedToZero)
     })
 })
