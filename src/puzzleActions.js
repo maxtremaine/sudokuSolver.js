@@ -1,5 +1,7 @@
 const { emptyGrid, groups, fileToStringConversionIndexes } = require('./puzzleData').puzzleData
 
+// I/O
+
 const sudokuFileToString = sudokuFile => {
     return fileToStringConversionIndexes
         .map(index => sudokuFile[index])
