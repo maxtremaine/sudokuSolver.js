@@ -1,5 +1,5 @@
-const { isSudokuFile } = require('../src/assertions')
 const { ok } = require('assert')
+const { isSudokuFile, isSudokuString } = require('../src/assertions')
 
 describe('assertions', () => {
     it('Should check that a string is a .sudoku file.', () => {
@@ -31,5 +31,15 @@ describe('assertions', () => {
             '9 6__|_2_|__8 '].join('\n')
         ok(isSudokuFile(validFile))
         ok(!isSudokuFile(invalidFile))
+    })
+
+    it('Should check whether a string is a sudoku string.', () => {
+        const validPuzzle = '________1________2________3________4________5________6________7________8________9'
+        const longPuzzle = '________1________2________3________4________5________6________7________8________9_'
+        const improperChars = '________1________2___x____3________4____a___5________6________7________8________9_'
+
+        ok(isSudokuString(validPuzzle))
+        ok(!isSudokuString(longPuzzle))
+        ok(!isSudokuString(improperChars))
     })
 })
