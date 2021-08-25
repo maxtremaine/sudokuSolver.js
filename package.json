@@ -2,9 +2,10 @@
   "name": "sudokusolver",
   "version": "1.0.0",
   "description": "Solves sudoku, so I don't have to.",
-  "main": "main.mjs",
+  "main": "start.mjs",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node start.mjs"
   },
   "repository": {
     "type": "git",
