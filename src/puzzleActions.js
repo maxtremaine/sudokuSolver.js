@@ -54,8 +54,15 @@ const getCellValues = indexes => sudokuString => {
     return outputArray
 }
 
+// Compound Functions
+
+const getRelatedCellValues = pipe(
+    getRelatedCellIndexes,
+    getCellValues
+)
+
 const getPossibleValues = index => pipe(
-    getCellValues(getRelatedCellIndexes(index)),
+    getRelatedCellValues(index),
     getMissingDigits
 )
 
