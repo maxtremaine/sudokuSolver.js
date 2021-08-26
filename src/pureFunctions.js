@@ -11,4 +11,4 @@ const replaceSubstring = ({ index, substring }) => st => {
     return st.substring(0, index) + substring + st.substring(index + 1)
 }
 
-module.exports = { getMissingDigits, replaceSubstring }
+module.exports = { pipe, getMissingDigits, replaceSubstring }

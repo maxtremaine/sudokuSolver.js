@@ -1,7 +1,7 @@
 const { readFileSync, writeFileSync } = require('fs')
 const { isSudokuFile, isSudokuString } = require('./src/assertions')
-const { sudokuFileToString, isValidPuzzle, getCellValues, getRelatedCellIndexes, sudokuStringToFile } = require('./src/puzzleActions')
-const { getMissingDigits, replaceSubstring } = require('./src/pureFunctions')
+const { sudokuFileToString, isValidPuzzle, getPossibleValues, sudokuStringToFile } = require('./src/puzzleActions')
+const { replaceSubstring } = require('./src/pureFunctions')
 
 // Timekeeping
 
@@ -33,7 +33,7 @@ while(!solved) {
             .map((value, index) => ({
                     index,
                     value,
-                    possibleValues: getMissingDigits(getCellValues(getRelatedCellIndexes(index))(branch))
+                    possibleValues: getPossibleValues(index)(branch)
                 }))
             .filter(cell => cell.value === '_')
 

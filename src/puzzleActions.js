@@ -1,4 +1,5 @@
 const { emptyGrid, groups, fileToStringConversionIndexes } = require('./puzzleData').puzzleData
+const { pipe, getMissingDigits } = require('./pureFunctions')
 
 // I/O
 
@@ -53,4 +54,9 @@ const getCellValues = indexes => sudokuString => {
     return outputArray
 }
 
-module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues }
+const getPossibleValues = index => pipe(
+    getCellValues(getRelatedCellIndexes(index)),
+    getMissingDigits
+)
+
+module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getPossibleValues }
