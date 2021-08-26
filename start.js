@@ -61,4 +61,4 @@ console.log(`\nWOO, we did it:\n${sudokuStringToFile(branches[0])}\n`)
 
 writeFileSync('./io/finish.sudoku', sudokuStringToFile(branches[0]))
 
-console.log(`Ran successfully in ${(Date.now() - t0) / 1000}.`)
+console.log(`Ran successfully in ${(Date.now() - t0) / 1000} seconds.`)
