@@ -1,4 +1,4 @@
-const { readFileSync } = require('fs')
+const { readFileSync, writeFileSync } = require('fs')
 const { isSudokuFile, isSudokuString } = require('./src/assertions')
 const { sudokuFileToString, isValidPuzzle, getCellValues, getRelatedCellIndexes, sudokuStringToFile } = require('./src/puzzleActions')
 const { getMissingDigits, replaceSubstring } = require('./src/pureFunctions')
@@ -55,5 +55,10 @@ while(!solved) {
     branches = newBranches
 }
 
-console.log(`WOO, we did it:\n${sudokuStringToFile(branches[0])}\n`)
-console.log(`Ran successfully in ${Date.now() - t0}.`)
+console.log(`\nWOO, we did it:\n${sudokuStringToFile(branches[0])}\n`)
+
+// Output
+
+writeFileSync('./io/finish.sudoku', sudokuStringToFile(branches[0]))
+
+console.log(`Ran successfully in ${(Date.now() - t0) / 1000}.`)
