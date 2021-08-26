@@ -1,3 +1,5 @@
+const pipe = (...fs) => x => fs.reduce((v, f) => f(v), x)
+
 const getMissingDigits = digits => {
     return Array.from(Array(10).keys())
         .slice(1)
