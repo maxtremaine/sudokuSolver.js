@@ -31,14 +31,11 @@ const isValidPuzzle = sudokuString => {
 // Navigating Puzzles
 
 const getRelatedCellIndexes = index => {
-    const indexSet = new Set()
-    for(const group of groups) {
-        if(group.includes(index)) {
-            for(const member of group) {
-                if(!indexSet.has(member)) indexSet.add(member)
-            }
-        }
-    }
+    const indexSet = groups.reduce((workingIndexes, group) => {
+        if(group.includes(index)) group.forEach(member => workingIndexes.add(member))
+        return workingIndexes
+    }, new Set())
+
     const indexArray = Array.from(indexSet)
     indexArray.sort((a, b) => a - b)
     return indexArray
