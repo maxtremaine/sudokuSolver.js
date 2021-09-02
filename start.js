@@ -19,9 +19,8 @@ if(!isValidPuzzle(sudokuString)) throw 'The input puzzle is not valid.'
 
 // Solution Tree
 
-const winningBranches = Array.from(sudokuString)
-    .filter(char => char === '_')
-    .reduce((workingBranches, _underscore, runCount) => {
+const winningBranches = [ ...Array.from(sudokuString).filter(char => char === '_').keys() ]
+    .reduce((workingBranches, runCount) => {
         const newBranches = new Set()
 
         workingBranches.forEach(branch => {
