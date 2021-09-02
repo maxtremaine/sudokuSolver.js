@@ -23,7 +23,7 @@ const winningBranches = [ ...Array.from(sudokuString).filter(c => c === '_').key
     .reduce((workingBranches, runCount) => {
         const newBranches = new Set()
 
-        workingBranches.forEach(branch => {
+        Array.from(workingBranches).forEach(branch => {
             const blankCells = Array.from(branch)
                 .map((value, index) => ({
                     index,
@@ -41,13 +41,13 @@ const winningBranches = [ ...Array.from(sudokuString).filter(c => c === '_').key
         })
 
         console.log(`- ${newBranches.size} branches on run ${runCount + 1}.`)
-        return Array.from(newBranches)
-    }, [ sudokuString ])
+        return newBranches
+    }, new Set([ sudokuString ]))
 
-console.log(`\nWOO, we did it:\n${sudokuStringToFile(winningBranches[0])}\n`)
+console.log(`\nWOO, we did it:\n${sudokuStringToFile(Array.from(winningBranches)[0])}\n`)
 
 // Output
 
-writeFileSync('./io/finish.sudoku', sudokuStringToFile(winningBranches[0]))
+writeFileSync('./io/finish.sudoku', sudokuStringToFile(Array.from(winningBranches)[0]))
 
 console.log(`Ran successfully in ${(Date.now() - t0) / 1000} seconds.`)
