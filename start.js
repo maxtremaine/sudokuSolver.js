@@ -44,10 +44,12 @@ const winningBranches = [ ...Array.from(sudokuString).filter(c => c === '_').key
         return newBranches
     }, new Set([ sudokuString ]))
 
-console.log(`\nWOO, we did it:\n${sudokuStringToFile(Array.from(winningBranches)[0])}\n`)
+const winningBranch = Array.from(winningBranches)[0]
+
+console.log(`\nWOO, we did it:\n${sudokuStringToFile(winningBranch)}\n`)
 
 // Output
 
-writeFileSync('./io/finish.sudoku', sudokuStringToFile(Array.from(winningBranches)[0]))
+writeFileSync('./io/finish.sudoku', sudokuStringToFile(winningBranch))
 
 console.log(`Ran successfully in ${(Date.now() - t0) / 1000} seconds.`)
