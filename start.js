@@ -19,29 +19,31 @@ if(!isValidPuzzle(sudokuString)) throw 'The input puzzle is not valid.'
 
 // Solution Tree
 
-const winningBranches = Array.from(sudokuString).filter(char => char === '_').reduce((workingBranches, _underscore, runCount) => {
-    const newBranches = new Set()
+const winningBranches = Array.from(sudokuString)
+    .filter(char => char === '_')
+    .reduce((workingBranches, _underscore, runCount) => {
+        const newBranches = new Set()
 
-    workingBranches.forEach(branch => {
-        const blankCells = Array.from(branch)
-            .map((value, index) => ({
-                index,
-                value,
-                possibleValues: getPossibleValues(index)(branch)
-            }))
-            .filter(cell => cell.value === '_')
+        workingBranches.forEach(branch => {
+            const blankCells = Array.from(branch)
+                .map((value, index) => ({
+                    index,
+                    value,
+                    possibleValues: getPossibleValues(index)(branch)
+                }))
+                .filter(cell => cell.value === '_')
 
-        blankCells.sort((a, b) => a.possibleValues.length - b.possibleValues.length)
+            blankCells.sort((a, b) => a.possibleValues.length - b.possibleValues.length)
 
-        blankCells[0].possibleValues.forEach(value => {
-            const newBranch = replaceSubstring({ index: blankCells[0].index, substring: value})(branch)
-            newBranches.add(newBranch)
+            blankCells[0].possibleValues.forEach(value => {
+                const newBranch = replaceSubstring({ index: blankCells[0].index, substring: value})(branch)
+                newBranches.add(newBranch)
+            })
         })
-    })
 
-    console.log(`- ${newBranches.size} branches on run ${runCount + 1}.`)
-    return Array.from(newBranches)
-}, [ sudokuString ])
+        console.log(`- ${newBranches.size} branches on run ${runCount + 1}.`)
+        return Array.from(newBranches)
+    }, [ sudokuString ])
 
 console.log(`\nWOO, we did it:\n${sudokuStringToFile(winningBranches[0])}\n`)
 
