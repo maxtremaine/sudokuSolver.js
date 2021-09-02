@@ -66,4 +66,4 @@ const getPossibleValues = index => pipe(
     getMissingDigits
 )
 
-module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getPossibleValues }
+module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues, getPossibleValues }
