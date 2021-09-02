@@ -24,8 +24,8 @@ const winningBranches = [ ...Array.from(sudokuString).filter(c => c === '_').key
         const newBranches = new Set()
 
         Array.from(workingBranches).forEach(branch => {
-            const blankCells = Array.from(branch)
-                .map((value, index) => ({
+            const blankCells = Array
+                .from(branch, (value, index) => ({
                     index,
                     value,
                     possibleValues: getPossibleValues(index)(branch)
