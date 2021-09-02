@@ -23,7 +23,7 @@ const winningBranches = [ ...Array.from(sudokuString).filter(c => c === '_').key
     .reduce((workingBranches, runCount) => {
         const newBranches = new Set()
 
-        Array.from(workingBranches).forEach(branch => {
+        Array.from(workingBranches, branch => {
             const blankCells = Array
                 .from(branch, (value, index) => ({
                     index,
