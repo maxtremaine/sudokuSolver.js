@@ -19,16 +19,16 @@ if(!isValidPuzzle(sudokuString)) throw 'The input puzzle is not valid.'
 
 // State Variables
 
-let solved = false
-let runCount = 1
 let branches = [ sudokuString ]
 
 // Solution Tree
 
-while(!solved) {
-    const newBranches = []
+for(let runCount = 1;
+    runCount <= Array.from(sudokuString).filter(char => char === '_').length;
+    runCount++) {
+    const newBranches = new Set()
 
-    for(const branch of branches) {
+    branches.forEach(branch => {
         const blankCells = Array.from(branch)
             .map((value, index) => ({
                     index,
@@ -37,22 +37,16 @@ while(!solved) {
                 }))
             .filter(cell => cell.value === '_')
 
-        if(blankCells.length === 0) {
-            solved = true
-            newBranches.push(branch)
-            break
-        }
-
         blankCells.sort((a, b) => a.possibleValues.length - b.possibleValues.length)
 
         blankCells[0].possibleValues.forEach(value => {
             const newBranch = replaceSubstring({ index: blankCells[0].index, substring: value})(branch)
-            newBranches.push(newBranch)
+            newBranches.add(newBranch)
         })
-    }
+    })
 
-    if(!solved) console.log(`- ${newBranches.length} branches on run ${runCount++}`)
-    branches = newBranches
+    console.log(`- ${newBranches.size} branches on run ${runCount}.`)
+    branches = Array.from(newBranches)
 }
 
 console.log(`\nWOO, we did it:\n${sudokuStringToFile(branches[0])}\n`)
