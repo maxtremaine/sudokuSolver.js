@@ -17,24 +17,18 @@ if(!isSudokuString(sudokuString)) throw 'The input does not generate a valid sud
 
 if(!isValidPuzzle(sudokuString)) throw 'The input puzzle is not valid.'
 
-// State Variables
-
-let branches = [ sudokuString ]
-
 // Solution Tree
 
-for(let runCount = 1;
-    runCount <= Array.from(sudokuString).filter(char => char === '_').length;
-    runCount++) {
+const winningBranches = Array.from(sudokuString).filter(char => char === '_').reduce((workingBranches, _, runCount) => {
     const newBranches = new Set()
 
-    branches.forEach(branch => {
+    workingBranches.forEach(branch => {
         const blankCells = Array.from(branch)
             .map((value, index) => ({
-                    index,
-                    value,
-                    possibleValues: getPossibleValues(index)(branch)
-                }))
+                index,
+                value,
+                possibleValues: getPossibleValues(index)(branch)
+            }))
             .filter(cell => cell.value === '_')
 
         blankCells.sort((a, b) => a.possibleValues.length - b.possibleValues.length)
@@ -45,14 +39,14 @@ for(let runCount = 1;
         })
     })
 
-    console.log(`- ${newBranches.size} branches on run ${runCount}.`)
-    branches = Array.from(newBranches)
-}
+    console.log(`- ${newBranches.size} branches on run ${runCount + 1}.`)
+    return Array.from(newBranches)
+}, [ sudokuString ])
 
-console.log(`\nWOO, we did it:\n${sudokuStringToFile(branches[0])}\n`)
+console.log(`\nWOO, we did it:\n${sudokuStringToFile(winningBranches[0])}\n`)
 
 // Output
 
-writeFileSync('./io/finish.sudoku', sudokuStringToFile(branches[0]))
+writeFileSync('./io/finish.sudoku', sudokuStringToFile(winningBranches[0]))
 
 console.log(`Ran successfully in ${(Date.now() - t0) / 1000} seconds.`)
