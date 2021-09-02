@@ -10,11 +10,10 @@ const sudokuFileToString = sudokuFile => {
 }
 
 const sudokuStringToFile = sudokuString =>  {
-    const outputPuzzle = emptyGrid.slice()
-    fileToStringConversionIndexes.forEach(( index, n ) => {
-        outputPuzzle[index] = sudokuString[n]
-    })
-    return outputPuzzle.join('')
+    return fileToStringConversionIndexes.reduce((workingGrid, index, n) => {
+        workingGrid[index] = sudokuString[n]
+        return workingGrid
+    }, emptyGrid).join('')
 }
 
 // Assertion
