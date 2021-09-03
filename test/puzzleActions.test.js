@@ -1,5 +1,5 @@
 const { deepStrictEqual, ok } = require('assert')
-const { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues } = require('../src/puzzleActions')
+const { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues, filterNewBranches } = require('../src/puzzleActions')
 
 describe('Puzzle Actions', () => {
     const fileString = [
@@ -39,5 +39,9 @@ describe('Puzzle Actions', () => {
 
     it('Should get cell values from a sudoku string given an array of indexes.', () => {
         deepStrictEqual(getCellValues([0, 2, 4])(validPuzzle), ['4', '7'])
+    })
+
+    it('Should filter valid branches that are an extension of a parent branch.', () => {
+        deepStrictEqual(Array.from(filterNewBranches(validPuzzle)), ['7___4___1__1___2___6_2_9_8_8_35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'])
     })
 })

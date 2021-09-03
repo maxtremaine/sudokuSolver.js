@@ -1,5 +1,5 @@
 const { emptyGrid, groups, fileToStringConversionIndexes } = require('./puzzleData').puzzleData
-const { pipe, getMissingDigits } = require('./pureFunctions')
+const { pipe, getMissingDigits, replaceSubstring } = require('./pureFunctions')
 
 // I/O
 
@@ -62,4 +62,22 @@ const getPossibleValues = index => pipe(
     getMissingDigits
 )
 
-module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues, getPossibleValues }
+const filterNewBranches = parentBranch => {
+    const blankCells = Array
+        .from(parentBranch, (value, index) => ({
+            index,
+            value,
+            possibleValues: getPossibleValues(index)(parentBranch)
+        }))
+        .filter(cell => cell.value === '_')
+
+    blankCells.sort((a, b) => a.possibleValues.length - b.possibleValues.length)
+
+    const newBranches = blankCells[0].possibleValues.map(value => (
+        replaceSubstring({ index: blankCells[0].index, substring: value})(parentBranch)
+    ))
+
+    return new Set(newBranches)
+}
+
+module.exports = { sudokuFileToString, sudokuStringToFile, isValidPuzzle, getRelatedCellIndexes, getCellValues, getPossibleValues, filterNewBranches }
