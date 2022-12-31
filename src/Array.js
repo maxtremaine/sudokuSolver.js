@@ -6,3 +6,10 @@ Array.prototype.getMissingDigits = function() {
 Array.prototype.hasDuplicates = function() {
 	return !this.every((x, i, arr) => arr.lastIndexOf(x) === i) // Not all unique.
 }
+
+Array.prototype.replace = function(i, newValue) {
+	return Array.from(this, (x, j) => {
+		if (i === j) return newValue
+		return x
+	})
+}

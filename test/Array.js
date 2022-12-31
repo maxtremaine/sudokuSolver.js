@@ -11,4 +11,12 @@ describe('Added Array Methods', () => {
 		deepStrictEqual([ 1, 2, 3 ].hasDuplicates(), false)
 		deepStrictEqual([ 1, 2, 2, 3 ].hasDuplicates(), true)
 	})
+
+	it('Should return a shallow copy of an array with a value replaced', () => {
+		const originalArray = [ 1, 2, 3 ]
+		const newArray = originalArray.replace(1, 5)
+
+		deepStrictEqual(newArray, [ 1, 5, 3 ])
+		deepStrictEqual(originalArray, [ 1, 2, 3 ]) // Copy was shallow
+	})
 })
