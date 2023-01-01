@@ -1,12 +1,20 @@
-const fromArray = values => {
-	if(values.length !== 81) throw RangeError('The \'values\' property must have a length of 81.')
+const fromArray = cells => {
+	if(cells.length !== 81) throw RangeError('The \'cells\' property must have a length of 81.')
 
-	for(const value of values) {
-		if(typeof value !== 'number') throw TypeError('Values must be numbers.')
-		if(value < 0 || value > 9) throw RangeError('Values must be between 0 and 9, inclusive.')
+	for(const cell of cells) {
+		if(typeof cell !== 'number') throw TypeError('Cells must be numbers.')
+		if(cell < 0 || cell > 9) throw RangeError('Cells must be between 0 and 9, inclusive.')
 	}
 
-	return { values }
+	return {
+		cells,
+
+		isValid() {
+			for(const group in groups) {
+				const groupCells = group.map(x => this.cells[x])
+			}
+		}
+	}
 }
 
 const fromSudokuFile = sudokuFile => {
@@ -39,3 +47,36 @@ const fileToStringConversionIndexes = [ 16, 17, 18, 20, 21, 22, 24, 25, 26, 30, 
 
 const sudokuFileValues = [ "_", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "\n", "|", "_",
 		"-", "a", "b", "c", "d", "e", "f", "g", "h", "i" ]
+
+const groups = [
+    // Rows
+    [ 0, 1, 2, 3, 4, 5, 6, 7,  8 ],
+    [ 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+    [ 18, 19, 20, 21, 22, 23, 24, 25, 26 ],
+    [ 27, 28, 29, 30, 31, 32, 33, 34, 35 ],
+    [ 36, 37, 38, 39, 40, 41, 42, 43, 44 ],
+    [ 45, 46, 47, 48, 49, 50, 51, 52, 53 ],
+    [ 54, 55, 56, 57, 58, 59, 60, 61, 62 ],
+    [ 63, 64, 65, 66, 67, 68, 69, 70, 71 ],
+    [ 72, 73, 74, 75, 76, 77, 78, 79, 80 ],
+    // Columns
+    [ 0, 9, 18, 27, 36, 45, 54, 63, 72 ],
+    [ 1, 10, 19, 28, 37, 46, 55, 64, 73 ],
+    [ 2, 11, 20, 29, 38, 47, 56, 65, 74 ],
+    [ 3, 12, 21, 30, 39, 48, 57, 66, 75 ],
+    [ 4, 13, 22, 31, 40, 49, 58, 67, 76 ],
+    [ 5, 14, 23, 32, 41, 50, 59, 68, 77 ],
+    [ 6, 15, 24, 33, 42, 51, 60, 69, 78 ],
+    [ 7, 16, 25, 34, 43, 52, 61, 70, 79 ],
+    [ 8, 17, 26, 35, 44, 53, 62, 71, 80 ],
+    // Boxes
+    [ 0, 1, 2, 9, 10, 11, 18, 19, 20 ],
+    [ 3, 4, 5, 12, 13, 14, 21, 22, 23 ],
+    [ 6, 7, 8, 15, 16, 17, 24, 25, 26 ],
+    [ 27, 28, 29, 36, 37, 38, 45, 46, 47 ],
+    [ 30, 31, 32, 39, 40, 41, 48, 49, 50 ],
+    [ 33, 34, 35, 42, 43, 44, 51, 52, 53 ],
+    [ 54, 55, 56, 63, 64, 65, 72, 73, 74 ],
+    [ 57, 58, 59, 66, 67, 68, 75, 76, 77 ],
+    [ 60, 61, 62, 69, 70, 71, 78, 79, 80 ]
+]

@@ -28,10 +28,10 @@ describe('Sudoku', () => {
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
 				0, 0, 2, 0, 0, 0, 8 ]
 
-			throws(() => Sudoku.fromArray(valuesWithString), TypeError('Values must be numbers.'))
+			throws(() => Sudoku.fromArray(valuesWithString), TypeError('Cells must be numbers.'))
 		})
 		it('Should throw a RangeError if 81 values are not provided.', () => {
-			throws(() => Sudoku.fromArray([ 1, 2 ]), RangeError('The \'values\' property must have a length of 81.'))
+			throws(() => Sudoku.fromArray([ 1, 2 ]), RangeError('The \'cells\' property must have a length of 81.'))
 		})
 		it('Should throw a RangeError if a value is below 0 or above 9.', () => {
 			const valuesWithTen = [ 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
@@ -39,13 +39,13 @@ describe('Sudoku', () => {
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
 				0, 0, 2, 0, 0, 0, 8 ]
 			
-			throws(() => Sudoku.fromArray(valuesWithTen), RangeError('Values must be between 0 and 9, inclusive.'))
+			throws(() => Sudoku.fromArray(valuesWithTen), RangeError('Cells must be between 0 and 9, inclusive.'))
 		})
 	})
 
 	describe('fromSudokuFile', () => {
 		it('Should create a Sudoku object from a .sudoku file string', () => {
-			deepStrictEqual(Sudoku.fromSudokuFile(validFile).values, sudokuValues)
+			deepStrictEqual(Sudoku.fromSudokuFile(validFile).cells, sudokuValues)
 		})
 		it('Should throw a TypeError if a string is not used', () => {
 			throws(() => Sudoku.fromSudokuFile(5), TypeError('The \'sudokuFile\' parameter must be a string.'))
