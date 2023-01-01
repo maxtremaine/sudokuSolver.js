@@ -73,4 +73,18 @@ describe('Sudoku', () => {
 			throws(() => Sudoku.fromSudokuFile(illegalCharacter), RangeError('You cannot use \'w\' in the \'sudokuFile\' parameter.'))
 		})
 	})
+
+	describe('isValid', () => {
+		it('Should identify a valid puzzle', () => {
+			deepStrictEqual(Sudoku.fromArray(sudokuValues).isValid(), true)
+		})
+		it('Should identify an invalid puzzle', () => {
+			const invalidPuzzle = [ 7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
+				2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2,
+				1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0,
+				0, 2, 0, 0, 0, 8 ]
+
+			deepStrictEqual(Sudoku.fromArray(invalidPuzzle).isValid(), false)
+		})
+	})
 })
