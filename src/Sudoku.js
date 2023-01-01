@@ -1,8 +1,12 @@
-const fromArray = values => ({
-	values,
+const fromArray = values => {
+	if(values.length !== 81) throw RangeError('The \'values\' property must have a length of 81.')
 
+	for(const value of values) {
+		if(typeof value !== 'number') throw TypeError('Values must be numbers.')
+	}
 
-})
+	return { values }
+}
 
 const fromSudokuFile = sudokuFile => {
 	return fromArray(fileToStringConversionIndexes.map(x => sudokuFile[x])
