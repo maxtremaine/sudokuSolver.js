@@ -8,8 +8,7 @@ Array.prototype.hasDuplicates = function() {
 }
 
 Array.prototype.replace = function(i, newValue) {
-	return Array.from(this, (x, j) => {
-		if (i === j) return newValue
-		return x
-	})
+	return this.slice(0, i)
+		.concat([newValue])
+		.concat(this.slice(i + 1))
 }
