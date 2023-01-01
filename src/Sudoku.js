@@ -10,6 +10,15 @@ const fromArray = values => {
 }
 
 const fromSudokuFile = sudokuFile => {
+	if(typeof sudokuFile !== 'string') throw TypeError('The \'sudokuFile\' parameter must be a string.')
+	if(sudokuFile.length !== 167) throw RangeError('The \'sudokuFile\' parameter must have a length of 167.')
+
+	for(const character of sudokuFile) {
+		if(!sudokuFileValues.includes(character)) {
+			throw RangeError('You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.')
+		}
+	}
+
 	return fromArray(fileToStringConversionIndexes.map(x => sudokuFile[x])
 		.map(x => {
 			if (x === '_') {
@@ -27,3 +36,6 @@ const fileToStringConversionIndexes = [ 16, 17, 18, 20, 21, 22, 24, 25, 26, 30, 
     86, 87, 88, 90, 91, 92, 94, 95, 96, 100, 101, 102, 104, 105, 106, 108, 109, 110, 128, 129,
     130, 132, 133, 134, 136, 137, 138, 142, 143, 144, 146, 147, 148, 150, 151, 152, 156, 157,
     158, 160, 161, 162, 164, 165, 166 ]
+
+const sudokuFileValues = [ "_", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "\n", "|", "_",
+		"-", "a", "b", "c", "d", "e", "f", "g", "h", "i" ]
