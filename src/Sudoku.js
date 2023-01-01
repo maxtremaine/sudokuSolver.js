@@ -25,8 +25,12 @@ const fromArray = cells => {
 }
 
 const fromSudokuFile = sudokuFile => {
-	if(typeof sudokuFile !== 'string') throw TypeError('The \'sudokuFile\' parameter must be a string.')
-	if(sudokuFile.length !== 167) throw RangeError('The \'sudokuFile\' parameter must have a length of 167.')
+	if(typeof sudokuFile !== 'string') {
+		throw TypeError('The \'sudokuFile\' parameter must be a string.')
+	}
+	if(sudokuFile.length !== 167) {
+		throw RangeError('The \'sudokuFile\' parameter must have a length of 167.')
+	}
 
 	for(const character of sudokuFile) {
 		if(!sudokuFileValues.includes(character)) {
