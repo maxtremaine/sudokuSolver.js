@@ -3,6 +3,7 @@ const fromArray = values => {
 
 	for(const value of values) {
 		if(typeof value !== 'number') throw TypeError('Values must be numbers.')
+		if(value < 0 || value > 9) throw RangeError('Values must be between 0 and 9, inclusive.')
 	}
 
 	return { values }
