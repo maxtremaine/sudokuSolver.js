@@ -22,6 +22,9 @@ describe('Sudoku', () => {
         0, 8 ]
 
 	describe('fromArray', () => {
+		it('Should throw a TypeError if an Array is not used', () => {
+			throws(() => Sudoku.fromArray('valuesWithString'), TypeError('Cells must be an Array.'))
+		})
 		it('Should throw a TypeError if a value that is not a number is used', () => {
 			const valuesWithString = [ '7', 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
 				0, 2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,

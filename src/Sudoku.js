@@ -1,4 +1,5 @@
 const fromArray = cells => {
+	if(!(cells instanceof Array)) throw TypeError('Cells must be an Array.')
 	if(cells.length !== 81) throw RangeError('The \'cells\' property must have a length of 81.')
 
 	for(const cell of cells) {
