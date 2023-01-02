@@ -31,4 +31,9 @@ describe('Array', () => {
 			deepStrictEqual(originalArray, [ 1, 2, 3, 4, 5 ])
 		})
 	})
+	describe('unique', () => {
+		it('Should return only the unique values from an Array', () => {
+			deepStrictEqual([ 1, 2, 2, 3 ].unique(), [ 1, 2, 3])
+		})
+	})
 })

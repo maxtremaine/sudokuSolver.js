@@ -12,3 +12,11 @@ Array.prototype.replace = function(i, newValue) {
 		.concat([newValue])
 		.concat(this.slice(i + 1))
 }
+
+Array.prototype.unique = function() {
+	return this.reduce((acc, x) => {
+		if(!acc.includes(x)) acc.push(x)
+
+		return acc
+	}, [])
+}
