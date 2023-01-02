@@ -21,6 +21,16 @@ const fromArray = cells => {
 			}
 
 			return true
+		},
+
+		getRelatedCells(index) {
+			return groups.filter(group => group.includes(index))
+				.flat()
+				.unique() // Remove repeating indexes.
+				.map(i => this.cells[i])
+				.filter(x => x !== 0)
+				.unique() // Remove repeating values.
+				.sort()
 		}
 	}
 }
