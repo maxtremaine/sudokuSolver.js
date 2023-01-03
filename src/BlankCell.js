@@ -2,11 +2,11 @@ const create = ({ index, possibleValues }) => {
 	if(typeof index !== 'number') throw TypeError('\'index\' has to be a number.')
 	if(!(possibleValues instanceof Array)) throw TypeError('\'possibleValues\' has to be an Array.')
 
-	if(possibleValues !== []) {
-		for(const value in possibleValues) {
-			if(typeof value !== 'number') throw TypeError('Values must be numbers.')
-		}
-	}
+	// if(possibleValues !== []) {
+	// 	for(const value in possibleValues) {
+	// 		if(typeof value !== 'number') throw TypeError('Values must be numbers.')
+	// 	}
+	// }
 	
 	return { index, possibleValues }
 }
