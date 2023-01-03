@@ -16,7 +16,7 @@ describe('BlankCell', () => {
 		})
 		it('Should limit possibleValues composites to numbers.', () => {
 			throws(() => BlankCell.create({index: 1, possibleValues: [ 'hi' ]}),
-				TypeError('Values must be numbers.'))
+				TypeError('Expected value to be number, got: hi'))
 		})
 	})
 })

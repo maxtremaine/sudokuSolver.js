@@ -112,4 +112,26 @@ describe('Sudoku', () => {
 	        deepStrictEqual(Sudoku.fromSudokuFile(sudokuFile).getRelatedCells(1), relatedToOne)
 		})
 	})
+
+	describe('getBlankCells', () => {
+		it('Should find the blank cells in a puzzle', () => {
+			const missingOne = [
+				"  abc def ghi",
+				"1 7_2|954|836",
+				"2 539|186|247",
+				"3 684|237|519",
+				"  -----------",
+				"4 325|479|681",
+				"5 198|365|724",
+				"6 476|821|953",
+				"  -----------",
+				"7 247|593|168",
+				"8 861|742|395",
+				"9 953|618|472"
+			].join('\n')
+
+			deepStrictEqual(Sudoku.fromSudokuFile(missingOne).getBlankCells(),
+				[ { index: 1, possibleValues: [ 1 ]} ])
+		})
+	})
 })

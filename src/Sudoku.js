@@ -1,3 +1,6 @@
+const BlankCell = require('./BlankCell')
+require('./Array')
+
 const fromArray = cells => {
 	if(!(cells instanceof Array)) throw TypeError('Cells must be an Array.')
 	if(cells.length !== 81) throw RangeError('The \'cells\' property must have a length of 81.')
@@ -31,6 +34,21 @@ const fromArray = cells => {
 				.filter(x => x !== 0)
 				.unique() // Remove repeating values.
 				.sort()
+		},
+
+		// Returns all of the blank cells in a puzzle as BlankCell objects.
+		getBlankCells() {
+			return cells.reduce((acc, cell, index) => {
+				if(cell === 0) {
+					acc.push(BlankCell.create({
+						index,
+						possibleValues: this.getRelatedCells(index)
+							.getMissingDigits()
+					}))
+				}
+				
+				return acc
+			}, [])
 		}
 	}
 }
