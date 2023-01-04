@@ -134,4 +134,10 @@ describe('Sudoku', () => {
 				[ { index: 1, possibleValues: [ 1 ]} ])
 		})
 	})
+
+	describe('toSudokuFile', () => {
+		it('Should spit out a .sudoku file', () => {
+			deepStrictEqual(Sudoku.fromArray(sudokuValues).toSudokuFile(), validFile)
+		})
+	})
 })

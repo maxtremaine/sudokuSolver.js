@@ -38,7 +38,7 @@ const fromArray = cells => {
 
 		// Returns all of the blank cells in a puzzle as BlankCell objects.
 		getBlankCells() {
-			return cells.reduce((acc, cell, index) => {
+			return this.cells.reduce((acc, cell, index) => {
 				if(cell === 0) {
 					acc.push(BlankCell.create({
 						index,
@@ -49,6 +49,21 @@ const fromArray = cells => {
 				
 				return acc
 			}, [])
+		},
+
+		toSudokuFile() {
+			return Array.from(blankSudokuFile)
+				.map((x, i) => {
+					if(fileToStringConversionIndexes.includes(i)) {
+						return this.cells[fileToStringConversionIndexes.indexOf(i)]
+					}
+					return x
+				})
+				.map(x => {
+					if(x === 0) return '_'
+					return String(x)
+				})
+				.join('')
 		}
 	}
 }
@@ -120,3 +135,14 @@ const groups = [
     [ 57, 58, 59, 66, 67, 68, 75, 76, 77 ],
     [ 60, 61, 62, 69, 70, 71, 78, 79, 80 ]
 ]
+
+const blankSudokuFile = [ " ", " ", "a", "b", "c", " ", "d", "e", "f", " ", "g", "h", "i", "\n",
+	"1", " ", "_", "_", "_", "|", "_", "_", "_", "|", "_", "_", "_", "\n", "2", " ", "_", "_",
+	"_", "|", "_", "_", "_", "|", "_", "_", "_", "\n", "3", " ", "_", "_", "_", "|", "_", "_",
+	"_", "|", "_", "_", "_", "\n", " ", " ", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+	"-", "\n", "4", " ", "_", "_", "_", "|", "_", "_", "_", "|", "_", "_", "_", "\n", "5", " ",
+	"_", "_", "_", "|", "_", "_", "_", "|", "_", "_", "_", "\n", "6", " ", "_", "_", "_", "|",
+	"_", "_", "_", "|", "_", "_", "_", "\n", " ", " ", "-", "-", "-", "-", "-", "-", "-", "-",
+	"-", "-", "-", "\n", "7", " ", "_", "_", "_", "|", "_", "_", "_", "|", "_", "_", "_", "\n",
+	"8", " ", "_", "_", "_", "|", "_", "_", "_", "|", "_", "_", "_", "\n", "9", " ", "_", "_",
+	"_", "|", "_", "_", "_", "|", "_", "_", "_" ]
