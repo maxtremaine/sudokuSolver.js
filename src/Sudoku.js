@@ -38,17 +38,19 @@ const fromArray = cells => {
 
 		// Returns all of the blank cells in a puzzle as BlankCell objects.
 		getBlankCells() {
-			return this.cells.reduce((acc, cell, index) => {
-				if(cell === 0) {
-					acc.push(BlankCell.create({
-						index,
-						possibleValues: this.getRelatedCells(index)
-							.getMissingDigits()
-					}))
-				}
-				
-				return acc
-			}, [])
+			return this.cells
+				.reduce((acc, cell, index) => {
+					if(cell === 0) {
+						acc.push(BlankCell.create({
+							index,
+							possibleValues: this.getRelatedCells(index)
+								.getMissingDigits()
+						}))
+					}
+					
+					return acc
+				}, [])
+				.sort((x, y) => x.possibleValues.length - y.possibleValues.length)
 		},
 
 		toSudokuFile() {
