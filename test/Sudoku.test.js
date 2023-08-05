@@ -23,7 +23,7 @@ describe('Sudoku', () => {
 
 	describe('fromArray', () => {
 		it('Should throw a TypeError if an Array is not used', () => {
-			throws(() => Sudoku.fromArray('valuesWithString'), TypeError('Cells must be an Array.'))
+			deepStrictEqual(Sudoku.fromArray('valuesWithString')[0], 'Cells must be an Array.')
 		})
 		it('Should throw a TypeError if a value that is not a number is used', () => {
 			const valuesWithString = [ '7', 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
@@ -31,10 +31,10 @@ describe('Sudoku', () => {
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
 				0, 0, 2, 0, 0, 0, 8 ]
 
-			throws(() => Sudoku.fromArray(valuesWithString), TypeError('Cells must be numbers.'))
+			deepStrictEqual(Sudoku.fromArray(valuesWithString)[0], 'Cells must be numbers.')
 		})
 		it('Should throw a RangeError if 81 values are not provided.', () => {
-			throws(() => Sudoku.fromArray([ 1, 2 ]), RangeError('The \'cells\' property must have a length of 81.'))
+			deepStrictEqual(Sudoku.fromArray([ 1, 2 ])[0], 'The \'cells\' property must have a length of 81.')
 		})
 		it('Should throw a RangeError if a value is below 0 or above 9.', () => {
 			const valuesWithTen = [ 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
@@ -42,20 +42,20 @@ describe('Sudoku', () => {
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
 				0, 0, 2, 0, 0, 0, 8 ]
 			
-			throws(() => Sudoku.fromArray(valuesWithTen), RangeError('Cells must be between 0 and 9, inclusive.'))
+			deepStrictEqual(Sudoku.fromArray(valuesWithTen)[0], 'Cells must be between 0 and 9, inclusive.')
 		})
 	})
 
 	describe('fromSudokuFile', () => {
 		it('Should create a Sudoku object from a .sudoku file string', () => {
-			deepStrictEqual(Sudoku.fromSudokuFile(validFile).cells, sudokuValues)
+			deepStrictEqual(Sudoku.fromSudokuFile(validFile)[1].cells, sudokuValues)
 		})
 		it('Should throw a TypeError if a string is not used', () => {
-			throws(() => Sudoku.fromSudokuFile(5), TypeError('The \'sudokuFile\' parameter must be a string.'))
+			deepStrictEqual(Sudoku.fromSudokuFile(5)[0], 'The \'sudokuFile\' parameter must be a string.')
 		})
 		it('Should throw a RangeError if the sudokuString parameter is not 167 characters.', () => {
-			throws(() => Sudoku.fromSudokuFile('hello'),
-				RangeError('The \'sudokuFile\' parameter must have a length of 167.'))
+			deepStrictEqual(Sudoku.fromSudokuFile('hello')[0],
+				'The \'sudokuFile\' parameter must have a length of 167.')
 		})
 		it('Should identify illegal characters in a RangeError', () => {
 			const illegalCharacter = [
@@ -73,13 +73,13 @@ describe('Sudoku', () => {
 	            "9 6__|_2_|__8"
 	        ].join('\n')
 
-			throws(() => Sudoku.fromSudokuFile(illegalCharacter), RangeError('You cannot use \'w\' in the \'sudokuFile\' parameter.'))
+			deepStrictEqual(Sudoku.fromSudokuFile(illegalCharacter)[0], 'You cannot use \'w\' in the \'sudokuFile\' parameter.')
 		})
 	})
 
 	describe('isValid', () => {
 		it('Should identify a valid puzzle', () => {
-			deepStrictEqual(Sudoku.fromArray(sudokuValues).isValid(), true)
+			deepStrictEqual(Sudoku.fromArray(sudokuValues)[1].isValid(), true)
 		})
 		it('Should identify an invalid puzzle', () => {
 			const invalidPuzzle = [ 7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
@@ -87,7 +87,7 @@ describe('Sudoku', () => {
 				1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0,
 				0, 2, 0, 0, 0, 8 ]
 
-			deepStrictEqual(Sudoku.fromArray(invalidPuzzle).isValid(), false)
+			deepStrictEqual(Sudoku.fromArray(invalidPuzzle)[1].isValid(), false)
 		})
 	})
 
@@ -109,7 +109,7 @@ describe('Sudoku', () => {
 	        ].join("\n")
 	        const relatedToOne = [ 1, 4, 6, 7 ]
 
-	        deepStrictEqual(Sudoku.fromSudokuFile(sudokuFile).getRelatedCells(1), relatedToOne)
+	        deepStrictEqual(Sudoku.fromSudokuFile(sudokuFile)[1].getRelatedCells(1), relatedToOne)
 		})
 	})
 
@@ -130,14 +130,14 @@ describe('Sudoku', () => {
 				"9 953|618|472"
 			].join('\n')
 
-			deepStrictEqual(Sudoku.fromSudokuFile(missingOne).getBlankCells(),
+			deepStrictEqual(Sudoku.fromSudokuFile(missingOne)[1].getBlankCells(),
 				[ { index: 1, possibleValues: [ 1 ]} ])
 		})
 	})
 
 	describe('toSudokuFile', () => {
 		it('Should spit out a .sudoku file', () => {
-			deepStrictEqual(Sudoku.fromArray(sudokuValues).toSudokuFile(), validFile)
+			deepStrictEqual(Sudoku.fromArray(sudokuValues)[1].toSudokuFile(), validFile)
 		})
 	})
 })

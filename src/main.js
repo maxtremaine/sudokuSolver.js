@@ -3,7 +3,9 @@ const Sudoku = require('./Sudoku')
 
 const t0 = Date.now()
 
-const startPuzzle = Sudoku.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
+const [ err, startPuzzle ] = Sudoku.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
+
+if(err) throw err
 
 if(!startPuzzle.isValid()) throw 'This start puzzle is not valid.'
 
@@ -14,7 +16,7 @@ const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workin
         const blankCell = oldBranch.getBlankCells()[0]
 
         for(const possibleValue of blankCell.possibleValues) {
-            newBranches.push(Sudoku.fromArray(oldBranch.cells.replace(blankCell.index, possibleValue)))
+            newBranches.push(Sudoku.fromArray(oldBranch.cells.replace(blankCell.index, possibleValue))[1])
         }
 
         return newBranches

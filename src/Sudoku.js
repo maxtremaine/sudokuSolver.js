@@ -2,34 +2,34 @@ const BlankCell = require('./BlankCell')
 require('./Array')
 
 const fromArray = cells => {
-	if(!(cells instanceof Array)) throw TypeError('Cells must be an Array.')
-	if(cells.length !== 81) throw RangeError('The \'cells\' property must have a length of 81.')
+	if(!(cells instanceof Array)) return [ 'Cells must be an Array.', {} ]
+	if(cells.length !== 81) return [ 'The \'cells\' property must have a length of 81.', {} ]
 
 	for(const cell of cells) {
-		if(typeof cell !== 'number') throw TypeError('Cells must be numbers.')
-		if(cell < 0 || cell > 9) throw RangeError('Cells must be between 0 and 9, inclusive.')
+		if(typeof cell !== 'number') return [ 'Cells must be numbers.', {} ]
+		if(cell < 0 || cell > 9) return [ 'Cells must be between 0 and 9, inclusive.', {} ]
 	}
 
-	return {
+	return [ '', {
 		cells,
 		isValid,
 		getRelatedCells,
 		getBlankCells,
 		toSudokuFile
-	}
+	} ]
 }
 
 const fromSudokuFile = sudokuFile => {
 	if(typeof sudokuFile !== 'string') {
-		throw TypeError('The \'sudokuFile\' parameter must be a string.')
+		return [ 'The \'sudokuFile\' parameter must be a string.', {} ]
 	}
 	if(sudokuFile.length !== 167) {
-		throw RangeError('The \'sudokuFile\' parameter must have a length of 167.')
+		return [ 'The \'sudokuFile\' parameter must have a length of 167.', {} ]
 	}
 
 	for(const character of sudokuFile) {
 		if(!sudokuFileValues.includes(character)) {
-			throw RangeError('You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.')
+			return [ 'You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.', {} ]
 		}
 	}
 
