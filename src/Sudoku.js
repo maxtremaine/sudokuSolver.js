@@ -77,7 +77,7 @@ function getBlankCells() {
 					index,
 					possibleValues: this.getRelatedCells(index)
 						.getMissingDigits()
-				}))
+				})[1])
 			}
 			
 			return acc
