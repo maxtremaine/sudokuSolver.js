@@ -12,61 +12,10 @@ const fromArray = cells => {
 
 	return {
 		cells,
-
-		isValid() {
-			for(const group of groups) {
-				const groupCells = group.map(x => this.cells[x])
-					.filter(x => x !== 0)
-
-				if(groupCells.hasDuplicates()) {
-					return false
-				}
-			}
-
-			return true
-		},
-
-		getRelatedCells(index) {
-			return groups.filter(group => group.includes(index))
-				.flat()
-				.unique() // Remove repeating indexes.
-				.map(i => this.cells[i])
-				.filter(x => x !== 0)
-				.unique() // Remove repeating values.
-				.sort()
-		},
-
-		// Returns all of the blank cells in a puzzle as BlankCell objects.
-		getBlankCells() {
-			return this.cells
-				.reduce((acc, cell, index) => {
-					if(cell === 0) {
-						acc.push(BlankCell.create({
-							index,
-							possibleValues: this.getRelatedCells(index)
-								.getMissingDigits()
-						}))
-					}
-					
-					return acc
-				}, [])
-				.sort((x, y) => x.possibleValues.length - y.possibleValues.length)
-		},
-
-		toSudokuFile() {
-			return Array.from(blankSudokuFile)
-				.map((x, i) => {
-					if(fileToStringConversionIndexes.includes(i)) {
-						return this.cells[fileToStringConversionIndexes.indexOf(i)]
-					}
-					return x
-				})
-				.map(x => {
-					if(x === 0) return '_'
-					return String(x)
-				})
-				.join('')
-		}
+		isValid,
+		getRelatedCells,
+		getBlankCells,
+		toSudokuFile
 	}
 }
 
@@ -95,6 +44,61 @@ const fromSudokuFile = sudokuFile => {
 }
 
 module.exports = { fromArray, fromSudokuFile }
+
+function isValid() {
+	for(const group of groups) {
+		const groupCells = group.map(x => this.cells[x])
+			.filter(x => x !== 0)
+
+		if(groupCells.hasDuplicates()) {
+			return false
+		}
+	}
+
+	return true
+}
+
+function getRelatedCells(index) {
+	return groups.filter(group => group.includes(index))
+		.flat()
+		.unique() // Remove repeating indexes.
+		.map(i => this.cells[i])
+		.filter(x => x !== 0)
+		.unique() // Remove repeating values.
+		.sort()
+}
+
+// Returns all of the blank cells in a puzzle as BlankCell objects.
+function getBlankCells() {
+	return this.cells
+		.reduce((acc, cell, index) => {
+			if(cell === 0) {
+				acc.push(BlankCell.create({
+					index,
+					possibleValues: this.getRelatedCells(index)
+						.getMissingDigits()
+				}))
+			}
+			
+			return acc
+		}, [])
+		.sort((x, y) => x.possibleValues.length - y.possibleValues.length)
+}
+
+function toSudokuFile() {
+	return Array.from(blankSudokuFile)
+		.map((x, i) => {
+			if(fileToStringConversionIndexes.includes(i)) {
+				return this.cells[fileToStringConversionIndexes.indexOf(i)]
+			}
+			return x
+		})
+		.map(x => {
+			if(x === 0) return '_'
+			return String(x)
+		})
+		.join('')
+}
 
 const fileToStringConversionIndexes = [ 16, 17, 18, 20, 21, 22, 24, 25, 26, 30, 31, 32, 34,
     35, 36, 38, 39, 40, 44, 45, 46, 48, 49, 50, 52, 53, 54, 72, 73, 74, 76, 77, 78, 80, 81, 82,
