@@ -1,7 +1,7 @@
 const { readFileSync, writeFileSync } = require('fs')
 const Sudoku = require('./Sudoku')
 
-const t0 = Date.now()
+const t0 = performance.now()
 
 const [ err, startPuzzle ] = Sudoku.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
 
@@ -25,4 +25,4 @@ const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workin
 
 writeFileSync('./io/finish.sudoku', winningBranches[0].toSudokuFile())
 
-console.log(`Ran successfully in ${(Date.now() - t0) / 1000} seconds.`)
+console.log(`Ran successfully in ${(performance.now() - t0) / 1000} seconds.`)
