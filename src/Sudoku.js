@@ -1,12 +1,11 @@
 const BlankCell = require('./BlankCell')
-require('./Array')
+require('./Uint8Array')
 
 const fromArray = cells => {
-	if(!(cells instanceof Array)) return [ 'Cells must be an Array.', {} ]
+	if(!(cells instanceof Uint8Array)) return [ 'Cells must be a Uint8Array.', {} ]
 	if(cells.length !== 81) return [ 'The \'cells\' property must have a length of 81.', {} ]
 
 	for(const cell of cells) {
-		if(typeof cell !== 'number') return [ 'Cells must be numbers.', {} ]
 		if(cell < 0 || cell > 9) return [ 'Cells must be between 0 and 9, inclusive.', {} ]
 	}
 
@@ -33,14 +32,14 @@ const fromSudokuFile = sudokuFile => {
 		}
 	}
 
-	return fromArray(fileToStringConversionIndexes.map(x => sudokuFile[x])
+	return fromArray(Uint8Array.from(fileToStringConversionIndexes.map(x => sudokuFile[x])
 		.map(x => {
 			if (x === '_') {
 				return 0
 			} else {
 				return Number(x)
 			}
-		}))
+		})))
 }
 
 module.exports = { fromArray, fromSudokuFile }
@@ -50,7 +49,7 @@ function isValid() {
 		const groupCells = group.map(x => this.cells[x])
 			.filter(x => x !== 0)
 
-		if(groupCells.hasDuplicates()) {
+		if(Uint8Array.from(groupCells).hasDuplicates()) {
 			return false
 		}
 	}
@@ -59,8 +58,8 @@ function isValid() {
 }
 
 function getRelatedCells(index) {
-	return groups.filter(group => group.includes(index))
-		.flat()
+	return Uint8Array.from(groups.filter(group => group.includes(index))
+		.flat())
 		.unique() // Remove repeating indexes.
 		.map(i => this.cells[i])
 		.filter(x => x !== 0)
@@ -100,11 +99,11 @@ function toSudokuFile() {
 		.join('')
 }
 
-const fileToStringConversionIndexes = [ 16, 17, 18, 20, 21, 22, 24, 25, 26, 30, 31, 32, 34,
+const fileToStringConversionIndexes = Uint8Array.from([ 16, 17, 18, 20, 21, 22, 24, 25, 26, 30, 31, 32, 34,
     35, 36, 38, 39, 40, 44, 45, 46, 48, 49, 50, 52, 53, 54, 72, 73, 74, 76, 77, 78, 80, 81, 82,
     86, 87, 88, 90, 91, 92, 94, 95, 96, 100, 101, 102, 104, 105, 106, 108, 109, 110, 128, 129,
     130, 132, 133, 134, 136, 137, 138, 142, 143, 144, 146, 147, 148, 150, 151, 152, 156, 157,
-    158, 160, 161, 162, 164, 165, 166 ]
+    158, 160, 161, 162, 164, 165, 166 ])
 
 const sudokuFileValues = [ "_", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "\n", "|", "_",
 		"-", "a", "b", "c", "d", "e", "f", "g", "h", "i" ]

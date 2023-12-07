@@ -1,6 +1,6 @@
 const create = ({ index, possibleValues }) => {
 	if(typeof index !== 'number') return [ '\'index\' has to be a number.', {} ]
-	if(!(possibleValues instanceof Array)) return [ '\'possibleValues\' has to be an Array.', {} ]
+	if(!(possibleValues instanceof Uint8Array)) return [ '\'possibleValues\' has to be a Uint8Array.', {} ]
 
 	if(possibleValues.length !== 0) {
 		for(const value of possibleValues) {

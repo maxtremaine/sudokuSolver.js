@@ -16,31 +16,23 @@ describe('Sudoku', () => {
             "8 __8|___|4__",
             "9 6__|_2_|__8"
         ].join('\n')
-	const sudokuValues = [ 7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0,
+	const sudokuValues = Uint8Array.from([ 7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0,
         9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 1, 0, 8,
         5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0, 0, 2, 0, 0,
-        0, 8 ]
+        0, 8 ])
 
 	describe('fromArray', () => {
 		it('Should throw a TypeError if an Array is not used', () => {
-			deepStrictEqual(Sudoku.fromArray('valuesWithString')[0], 'Cells must be an Array.')
-		})
-		it('Should throw a TypeError if a value that is not a number is used', () => {
-			const valuesWithString = [ '7', 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
-				0, 2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
-				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
-				0, 0, 2, 0, 0, 0, 8 ]
-
-			deepStrictEqual(Sudoku.fromArray(valuesWithString)[0], 'Cells must be numbers.')
+			deepStrictEqual(Sudoku.fromArray('valuesWithString')[0], 'Cells must be a Uint8Array.')
 		})
 		it('Should throw a RangeError if 81 values are not provided.', () => {
-			deepStrictEqual(Sudoku.fromArray([ 1, 2 ])[0], 'The \'cells\' property must have a length of 81.')
+			deepStrictEqual(Sudoku.fromArray(Uint8Array.from([ 1, 2 ]))[0], 'The \'cells\' property must have a length of 81.')
 		})
 		it('Should throw a RangeError if a value is below 0 or above 9.', () => {
-			const valuesWithTen = [ 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
+			const valuesWithTen = Uint8Array.from([ 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
 				0, 2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
-				0, 0, 2, 0, 0, 0, 8 ]
+				0, 0, 2, 0, 0, 0, 8 ])
 			
 			deepStrictEqual(Sudoku.fromArray(valuesWithTen)[0], 'Cells must be between 0 and 9, inclusive.')
 		})
@@ -82,10 +74,10 @@ describe('Sudoku', () => {
 			deepStrictEqual(Sudoku.fromArray(sudokuValues)[1].isValid(), true)
 		})
 		it('Should identify an invalid puzzle', () => {
-			const invalidPuzzle = [ 7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
+			const invalidPuzzle = Uint8Array.from([ 7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
 				2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2,
 				1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0,
-				0, 2, 0, 0, 0, 8 ]
+				0, 2, 0, 0, 0, 8 ])
 
 			deepStrictEqual(Sudoku.fromArray(invalidPuzzle)[1].isValid(), false)
 		})
@@ -107,7 +99,7 @@ describe('Sudoku', () => {
 	            "8 __8|___|4__",
 	            "9 6__|_2_|__8"
 	        ].join("\n")
-	        const relatedToOne = [ 1, 4, 6, 7 ]
+	        const relatedToOne = Uint8Array.from([ 1, 4, 6, 7 ])
 
 	        deepStrictEqual(Sudoku.fromSudokuFile(sudokuFile)[1].getRelatedCells(1), relatedToOne)
 		})
@@ -131,7 +123,7 @@ describe('Sudoku', () => {
 			].join('\n')
 
 			deepStrictEqual(Sudoku.fromSudokuFile(missingOne)[1].getBlankCells(),
-				[ { index: 1, possibleValues: [ 1 ]} ])
+				[ { index: 1, possibleValues: Uint8Array.from([ 1 ])} ])
 		})
 	})
 
