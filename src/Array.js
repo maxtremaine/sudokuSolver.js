@@ -4,19 +4,22 @@ Array.prototype.getMissingDigits = function() {
 }
 
 Array.prototype.hasDuplicates = function() {
-	return !this.every((x, i, arr) => arr.lastIndexOf(x) === i) // Not all unique.
+	for(let i = 0; i < this.length; i++) {
+		if(this.lastIndexOf(this[i]) !== i) {
+			return true
+		}
+	}
+	return false
 }
 
 Array.prototype.replace = function(i, newValue) {
-	return this.slice(0, i)
-		.concat([newValue])
-		.concat(this.slice(i + 1))
+	return Array.from([ ...this.slice(0, i), newValue, ...this.slice(i + 1) ])
 }
 
 Array.prototype.unique = function() {
-	return this.reduce((acc, x) => {
+	return Array.from(this.reduce((acc, x) => {
 		if(!acc.includes(x)) acc.push(x)
 
 		return acc
-	}, [])
+	}, []))
 }
