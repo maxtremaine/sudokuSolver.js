@@ -105,7 +105,7 @@ describe('Array', () => {
 				1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0,
 				0, 2, 0, 0, 0, 8 ])
 
-			deepStrictEqual(Uint8Array.from(invalidPuzzle).validateSudokuPuzzle(), 'The sudoku file is not valid because a group as two of the same value.')
+			deepStrictEqual(Uint8Array.from(invalidPuzzle).validateSudokuPuzzle(), 'The sudoku file is not valid because a group has two of the same value.')
 		})
 		it('Should provide an empty string if the puzzle is valid', () => {
 			deepStrictEqual(Uint8Array.from(sudokuValues).validateSudokuPuzzle(), '')

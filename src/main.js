@@ -1,13 +1,13 @@
 const { readFileSync, writeFileSync } = require('fs')
-const Sudoku = require('./Sudoku')
+require('./Uint8Array')
 
 const t0 = performance.now()
 
-const [ err, startPuzzle ] = Sudoku.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
+let [ err, startPuzzle ] = Uint8Array.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
 
 if(err) throw err
 
-if(!startPuzzle.isValid()) throw 'This start puzzle is not valid.'
+if(err = startPuzzle.validateSudokuPuzzle()) throw err
 
 const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workingBranches, runNumber) => {
     console.log(`Completed run ${runNumber + 1} with ${workingBranches.length} branches.`)
@@ -16,7 +16,7 @@ const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workin
         const blankCell = oldBranch.getBlankCells()[0]
 
         for(const possibleValue of blankCell.possibleValues) {
-            newBranches.push(Sudoku.fromArray(oldBranch.cells.replace(blankCell.index, possibleValue))[1])
+            newBranches.push(Uint8Array.from(oldBranch.replace(blankCell.index, possibleValue)))
         }
 
         return newBranches

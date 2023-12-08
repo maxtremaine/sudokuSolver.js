@@ -63,7 +63,7 @@ Uint8Array.prototype.validateSudokuPuzzle = function() {
 			.filter(x => x !== 0)
 
 		if(Uint8Array.from(groupCells).hasDuplicates()) {
-			return 'The sudoku file is not valid because a group as two of the same value.'
+			return 'The sudoku file is not valid because a group has two of the same value.'
 		}
 	}
 
