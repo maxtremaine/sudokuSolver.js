@@ -2,16 +2,16 @@ const BlankCell = require('./BlankCell')
 
 Uint8Array.fromSudokuFile = (sudokuFile) => {
 	if(typeof sudokuFile !== 'string') {
-		return [ 'The \'sudokuFile\' parameter must be a string.', Uint8Array.from([]) ]
+		return [ 'The \'sudokuFile\' parameter must be a string.', Uint8Array.of() ]
 	}
 
 	if(sudokuFile.length !== 167) {
-		return [ 'The \'sudokuFile\' parameter must have a length of 167.', Uint8Array.from([]) ]
+		return [ 'The \'sudokuFile\' parameter must have a length of 167.', Uint8Array.of() ]
 	}
 
 	for(const character of sudokuFile) {
 		if(!sudokuFileValues.includes(character)) {
-			return [ 'You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.', Uint8Array.from([]) ]
+			return [ 'You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.', Uint8Array.of() ]
 		}
 	}
 
@@ -40,7 +40,7 @@ Uint8Array.prototype.hasDuplicates = function() {
 }
 
 Uint8Array.prototype.replace = function(i, newValue) {
-	return Uint8Array.from([ ...this.slice(0, i), newValue, ...this.slice(i + 1) ])
+	return Uint8Array.of( ...this.slice(0, i), newValue, ...this.slice(i + 1) )
 }
 
 Uint8Array.prototype.unique = function() {
@@ -59,10 +59,10 @@ Uint8Array.prototype.validateSudokuPuzzle = function() {
 	}
 
 	for(const group of groups) {
-		const groupCells = group.map(x => this[x])
-			.filter(x => x !== 0)
+		const groupCells = Uint8Array.from(group.map(x => this[x])
+			.filter(x => x !== 0))
 
-		if(Uint8Array.from(groupCells).hasDuplicates()) {
+		if(groupCells.hasDuplicates()) {
 			return 'The sudoku file is not valid because a group has two of the same value.'
 		}
 	}
@@ -72,7 +72,7 @@ Uint8Array.prototype.validateSudokuPuzzle = function() {
 
 Uint8Array.prototype.getRelatedCells = function(index) {
 	return Uint8Array.from(groups.filter(group => group.includes(index))
-		.flat())
+		.flat()) // .flat doesn't exist on typed arrays
 		.unique() // Remove repeating indexes.
 		.map(i => this[i])
 		.filter(x => x !== 0)
@@ -96,8 +96,7 @@ Uint8Array.prototype.getBlankCells = function() {
 }
 
 Uint8Array.prototype.toSudokuFile = function() {
-	return Array.from(blankSudokuFile)
-		.map((x, i) => {
+	return blankSudokuFile.map((x, i) => {
 			if(fileToStringConversionIndexes.includes(i)) {
 				return this[fileToStringConversionIndexes.indexOf(i)]
 			}
