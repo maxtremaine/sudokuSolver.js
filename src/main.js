@@ -3,24 +3,28 @@ require('./Uint8Array')
 
 const t0 = performance.now()
 
-let [ err, startPuzzle ] = Uint8Array.fromSudokuFile(readFileSync('./io/start.sudoku', 'utf-8'))
+const sudokuFile = readFileSync('./io/start.sudoku', 'utf-8')
+
+let [ err, startPuzzle ] = Uint8Array.fromSudokuFile(sudokuFile)
 
 if(err) throw err
 
 if(err = startPuzzle.validateSudokuPuzzle()) throw err
 
 const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workingBranches, runNumber) => {
-    console.log(`Completed run ${runNumber + 1} with ${workingBranches.length} branches.`)
-
-    return workingBranches.reduce((newBranches, oldBranch) => {
+    const newWorkingBranches = workingBranches.reduce((newBranches, oldBranch) => {
         const blankCell = oldBranch.getBlankCells()[0]
 
         for(const possibleValue of blankCell.possibleValues) {
-            newBranches.push(Uint8Array.from(oldBranch.replace(blankCell.index, possibleValue)))
+            newBranches.push(oldBranch.replace(blankCell.index, possibleValue))
         }
 
         return newBranches
     }, [])
+
+    console.log(`Completed run ${runNumber + 1} with ${workingBranches.length} branches.`)
+
+    return newWorkingBranches
 }, [ startPuzzle ])
 
 writeFileSync('./io/finish.sudoku', winningBranches[0].toSudokuFile())
