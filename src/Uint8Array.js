@@ -2,27 +2,25 @@ const BlankCell = require('./BlankCell')
 
 Uint8Array.fromSudokuFile = (sudokuFile) => {
 	if(typeof sudokuFile !== 'string') {
-		return [ 'The \'sudokuFile\' parameter must be a string.', Uint8Array.of() ]
+		throw TypeError('Expected \'sudokuFile\' parameter to be a string, got: ' + typeof sudokuFile)
 	}
-
 	if(sudokuFile.length !== 167) {
-		return [ 'The \'sudokuFile\' parameter must have a length of 167.', Uint8Array.of() ]
+		throw RangeError('Expected \'sudokuFile\' parameter to have a length of 167, got: ' + sudokuFile.length)
 	}
-
 	for(const character of sudokuFile) {
 		if(!sudokuFileValues.includes(character)) {
-			return [ 'You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.', Uint8Array.of() ]
+			throw RangeError('You cannot use \'' + character + '\' in the \'sudokuFile\' parameter.')
 		}
 	}
 
-	return ['', Uint8Array.from(fileToStringConversionIndexes.map(x => sudokuFile[x])
+	return Uint8Array.from(fileToStringConversionIndexes.map(x => sudokuFile[x])
 		.map(x => {
 			if (x === '_') {
 				return 0
 			} else {
 				return Number(x)
 			}
-		}))]
+		}))
 }
 
 Uint8Array.prototype.getMissingDigits = function() {

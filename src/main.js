@@ -5,9 +5,7 @@ const t0 = performance.now()
 
 const sudokuFile = readFileSync('./io/start.sudoku', 'utf-8')
 
-let [ err, startPuzzle ] = Uint8Array.fromSudokuFile(sudokuFile)
-
-if(err) throw err
+const startPuzzle = Uint8Array.fromSudokuFile(sudokuFile)
 
 if(err = startPuzzle.validateSudokuPuzzle()) throw err
 
