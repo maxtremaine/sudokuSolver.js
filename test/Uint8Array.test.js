@@ -18,43 +18,43 @@ describe('Uint8Array', () => {
 		"8 __8|___|4__",
 		"9 6__|_2_|__8"
 	].join('\n')
-	const sudokuValues = Uint8Array.from([ 7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0,
+	const sudokuValues = Uint8Array.of(7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0,
 		9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 1, 0, 8,
 		5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0, 0, 2, 0, 0,
-		0, 8 ])
+		0, 8)
 		
 	describe('getMissingDigits', () => {
 		it('Should return missing digits from an array', () => {
-			deepStrictEqual(Uint8Array.from([ 1, 2, 3 ]).getMissingDigits(), Uint8Array.from([ 4, 5, 6, 7, 8, 9 ]))
+			deepStrictEqual(Uint8Array.of(1, 2, 3).getMissingDigits(), Uint8Array.of(4, 5, 6, 7, 8, 9))
 		})
 	})
 
 	describe('hasDuplicates', () => {
 		it('Should return true if an array has duplicates', () => {
-			deepStrictEqual(Uint8Array.from([ 1, 2, 2, 3 ]).hasDuplicates(), true)
+			deepStrictEqual(Uint8Array.of(1, 2, 2, 3).hasDuplicates(), true)
 		})
 		it('Should return false if an array is all unique', () => {
-			deepStrictEqual(Uint8Array.from([ 1, 2, 3 ]).hasDuplicates(), false)
+			deepStrictEqual(Uint8Array.of(1, 2, 3).hasDuplicates(), false)
 		})
 	})
 
 	describe('replace', () => {
-		const originalArray = Uint8Array.from([ 1, 2, 3, 4, 5 ])
+		const originalArray = Uint8Array.of(1, 2, 3, 4, 5)
 		const newArray = originalArray.replace(1, 5)
 
 		it('Should return a copy of an array with a value replaced', () => {
-			deepStrictEqual(newArray, Uint8Array.from([ 1, 5, 3, 4, 5 ]))
-			deepStrictEqual(originalArray.replace(0, 4), Uint8Array.from([ 4, 2, 3, 4, 5 ]))
-			deepStrictEqual(originalArray.replace(4, 1), Uint8Array.from([ 1, 2, 3, 4, 1 ]))
+			deepStrictEqual(newArray, Uint8Array.of(1, 5, 3, 4, 5))
+			deepStrictEqual(originalArray.replace(0, 4), Uint8Array.of(4, 2, 3, 4, 5))
+			deepStrictEqual(originalArray.replace(4, 1), Uint8Array.of(1, 2, 3, 4, 1))
 		})
 		it('Should not change the original array', () => {
-			deepStrictEqual(originalArray, Uint8Array.from([ 1, 2, 3, 4, 5 ]))
+			deepStrictEqual(originalArray, Uint8Array.of(1, 2, 3, 4, 5))
 		})
 	})
 
 	describe('unique', () => {
 		it('Should return only the unique values from an Array', () => {
-			deepStrictEqual(Uint8Array.from([ 1, 2, 2, 3 ]).unique(), Uint8Array.from([ 1, 2, 3]))
+			deepStrictEqual(Uint8Array.of(1, 2, 2, 3).unique(), Uint8Array.of(1, 2, 3))
 		})
 	})
 
@@ -105,23 +105,23 @@ describe('Uint8Array', () => {
 
 	describe('validateSudokuPuzzle', () => {
 		it('Should provide an error if 81 values are not provided.', () => {
-			deepStrictEqual(Uint8Array.from([ 1, 2 ]).validateSudokuPuzzle(), 'Sudoku puzzles must have a length of 81.')
+			deepStrictEqual(Uint8Array.of(1, 2).validateSudokuPuzzle(), 'Sudoku puzzles must have a length of 81.')
 		})
 		it('Should provide an error if a value is below 0 or above 9.', () => {
-			const valuesWithTen = Uint8Array.from([ 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
+			const valuesWithTen = Uint8Array.of(10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6,
 				0, 2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
 				2, 1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0,
-				0, 0, 2, 0, 0, 0, 8 ])
+				0, 0, 2, 0, 0, 0, 8)
 			
-			deepStrictEqual(Uint8Array.from(valuesWithTen).validateSudokuPuzzle(), 'Cells must be between 0 and 9, inclusive.')
+			deepStrictEqual(valuesWithTen.validateSudokuPuzzle(), 'Cells must be between 0 and 9, inclusive.')
 		})
 		it('Should identify an invalid puzzle', () => {
-			const invalidPuzzle = Uint8Array.from([ 7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
+			const invalidPuzzle = Uint8Array.of(7, 7, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0,
 				2, 0, 9, 0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2,
 				1, 0, 8, 5, 0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0,
-				0, 2, 0, 0, 0, 8 ])
+				0, 2, 0, 0, 0, 8)
 
-			deepStrictEqual(Uint8Array.from(invalidPuzzle).validateSudokuPuzzle(), 'The sudoku file is not valid because a group has two of the same value.')
+			deepStrictEqual(invalidPuzzle.validateSudokuPuzzle(), 'The sudoku file is not valid because a group has two of the same value.')
 		})
 		it('Should provide an empty string if the puzzle is valid', () => {
 			deepStrictEqual(Uint8Array.from(sudokuValues).validateSudokuPuzzle(), '')
@@ -144,7 +144,7 @@ describe('Uint8Array', () => {
 	            "8 __8|___|4__",
 	            "9 6__|_2_|__8"
 	        ].join("\n")
-	        const relatedToOne = Uint8Array.from([ 1, 4, 6, 7 ])
+	        const relatedToOne = Uint8Array.of(1, 4, 6, 7)
 
 	        deepStrictEqual(Uint8Array.fromSudokuFile(sudokuFile).getRelatedCells(1), relatedToOne)
 		})
@@ -168,7 +168,7 @@ describe('Uint8Array', () => {
 			].join('\n')
 
 			deepStrictEqual(Uint8Array.fromSudokuFile(missingOne).getBlankCells(),
-				[ BlankCell.from({ index: 1, possibleValues: Uint8Array.from([ 1 ])}) ])
+				[ BlankCell.from({ index: 1, possibleValues: Uint8Array.of(1)}) ])
 		})
 	})
 
