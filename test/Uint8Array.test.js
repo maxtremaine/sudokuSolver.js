@@ -3,7 +3,7 @@ const { deepStrictEqual } = require('assert')
 const BlankCell = require('../src/BlankCell')
 require('../src/Uint8Array')
 
-describe('Array', () => {
+describe('Uint8Array', () => {
 	const validFile = [
 		"  abc def ghi",
 		"1 7__|_4_|__1",
