@@ -6,7 +6,7 @@ function BlankCell(index, possibleValues) {
 	// Guard for types
 	if(typeof index !== 'number') throw TypeError('Expected \'index\' to be a number, got: ' + typeof index)
 	if(!(possibleValues instanceof Uint8Array)) {
-		throw TypeError('Expected \'possibleValues\' to be a Uint8Array, got:' + typeof possibleValues)
+		throw TypeError('Expected \'possibleValues\' to be a Uint8Array, got: ' + typeof possibleValues)
 	}
 	if(possibleValues.length !== 0) {
 		for(const value of possibleValues) {

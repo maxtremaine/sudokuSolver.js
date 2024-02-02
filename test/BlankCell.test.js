@@ -4,16 +4,24 @@ const BlankCell = require('../src/BlankCell')
 describe('BlankCell', () => {
 	describe('create', () => {
 		it('Should limit index to numbers', () => {
-			deepStrictEqual(BlankCell.create({index: 'i', possibleValues: Uint8Array.from([ 1 ])})[0],
-				'\'index\' has to be a number.')
+			try {
+				BlankCell.from({index: 'i', possibleValues: Uint8Array.from([ 1 ])})
+			} catch(error) {
+				deepStrictEqual(error.name, 'TypeError')
+				deepStrictEqual(error.message, 'Expected \'index\' to be a number, got: string')
+			}
 		})
 		it('Should limit possibleValues to Uint8Arrays', () => {
-			deepStrictEqual(BlankCell.create({index: 1, possibleValues:'hi'})[0],
-				'\'possibleValues\' has to be a Uint8Array.')
+			try {
+				BlankCell.from({index: 1, possibleValues:'hi'})
+			} catch(error) {
+				deepStrictEqual(error.name, 'TypeError')
+				deepStrictEqual(error.message, 'Expected \'possibleValues\' to be a Uint8Array, got: string')
+			}
 		})
 		it('Should allow empty possibleValues', () => {
-			deepStrictEqual(BlankCell.create({index: 1, possibleValues: Uint8Array.from([])})[1].possibleValues,
-				Uint8Array.from([]))
+			deepStrictEqual(BlankCell.from({index: 1, possibleValues: Uint8Array.from([])}).possibleValues,
+				Uint8Array.of())
 		})
 	})
 })
