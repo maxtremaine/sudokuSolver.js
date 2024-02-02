@@ -26,7 +26,7 @@ Uint8Array.fromSudokuFile = (sudokuFile) => {
 }
 
 Uint8Array.prototype.getMissingDigits = function() {
-	return Uint8Array.of(...Array(10).keys())
+	return Uint8Array.from(Array(10).keys())
 		.slice(1) // Range from 1 to 9, inclusive.
 		.filter(x => !this.includes(x))
 }
