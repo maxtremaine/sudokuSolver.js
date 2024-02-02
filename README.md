@@ -37,3 +37,7 @@ npm start
 ```
 
 Your solved puzzle will be in io/finish.sudoku.
+
+## Todos
+
+- [ ] Move away from arrays with error strings to throwing errors.
