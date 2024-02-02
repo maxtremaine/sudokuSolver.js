@@ -1,14 +1,25 @@
-const create = ({ index, possibleValues }) => {
-	if(typeof index !== 'number') return [ '\'index\' has to be a number.', {} ]
-	if(!(possibleValues instanceof Uint8Array)) return [ '\'possibleValues\' has to be a Uint8Array.', {} ]
+function BlankCell(index, possibleValues) {
+	if(!new.target) { // Guard for missing 'new'
+		return new BlankCell(index, possibleValues)
+	}
 
+	// Guard for types
+	if(typeof index !== 'number') throw TypeError('Expected \'index\' to be a number, got: ' + typeof index)
+	if(!(possibleValues instanceof Uint8Array)) {
+		throw TypeError('Expected \'possibleValues\' to be a Uint8Array, got:' + typeof possibleValues)
+	}
 	if(possibleValues.length !== 0) {
 		for(const value of possibleValues) {
-			if(typeof value !== 'number') return [ 'Expected value to be number, got: ' + value, {} ]
+			if(typeof value !== 'number') throw TypeError('Expected value to be number, got: ' + value)
 		}
 	}
 
-	return [ '', { index, possibleValues } ]
+	this.index = index
+	this.possibleValues = possibleValues
 }
 
-module.exports = { create }
+BlankCell.from = ({ index, possibleValues }) => {
+	return BlankCell(index, possibleValues)
+}
+
+module.exports = BlankCell

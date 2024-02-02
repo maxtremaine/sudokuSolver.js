@@ -84,11 +84,11 @@ Uint8Array.prototype.getRelatedCells = function(index) {
 Uint8Array.prototype.getBlankCells = function() {
 	return this.reduce((acc, cell, index) => {
 			if(cell === 0) {
-				acc.push(BlankCell.create({
+				acc.push(BlankCell.from({
 					index,
 					possibleValues: this.getRelatedCells(index)
 						.getMissingDigits()
-				})[1])
+				}))
 			}
 			
 			return acc
