@@ -1,4 +1,6 @@
 const { deepStrictEqual } = require('assert')
+
+const BlankCell = require('../src/BlankCell')
 require('../src/Uint8Array')
 
 describe('Array', () => {
@@ -58,14 +60,23 @@ describe('Array', () => {
 
 	describe('fromSudokuFile', () => {
 		it('Should create a Uint8Array object from a .sudoku file string', () => {
-			deepStrictEqual(Uint8Array.fromSudokuFile(validFile)[1], sudokuValues)
+			deepStrictEqual(Uint8Array.fromSudokuFile(validFile), sudokuValues)
 		})
 		it('Should provide an error if a string is not used', () => {
-			deepStrictEqual(Uint8Array.fromSudokuFile(5)[0], 'The \'sudokuFile\' parameter must be a string.')
+			try {
+				Uint8Array.fromSudokuFile(5)
+			} catch(error) {
+				deepStrictEqual(error.name, 'TypeError')
+				deepStrictEqual(error.message, 'Expected \'sudokuFile\' parameter to be a string, got: number')
+			}
 		})
 		it('Should provide an error if the sudokuString parameter is not 167 characters.', () => {
-			deepStrictEqual(Uint8Array.fromSudokuFile('hello')[0],
-				'The \'sudokuFile\' parameter must have a length of 167.')
+			try {
+				Uint8Array.fromSudokuFile('hello')
+			} catch(error) {
+				deepStrictEqual(error.name, 'RangeError')
+				deepStrictEqual(error.message, 'Expected \'sudokuFile\' parameter to have a length of 167, got: 5')
+			}
 		})
 		it('Should identify illegal characters in an error.', () => {
 			const illegalCharacter = [
@@ -83,7 +94,12 @@ describe('Array', () => {
 	            "9 6__|_2_|__8"
 	        ].join('\n')
 
-			deepStrictEqual(Uint8Array.fromSudokuFile(illegalCharacter)[0], 'You cannot use \'w\' in the \'sudokuFile\' parameter.')
+			try {
+				Uint8Array.fromSudokuFile(illegalCharacter)
+			} catch(error) {
+				deepStrictEqual(error.name, 'RangeError')
+				deepStrictEqual(error.message, 'You cannot use \'w\' in the \'sudokuFile\' parameter.')
+			}
 		})
 	})
 
@@ -130,7 +146,7 @@ describe('Array', () => {
 	        ].join("\n")
 	        const relatedToOne = Uint8Array.from([ 1, 4, 6, 7 ])
 
-	        deepStrictEqual(Uint8Array.fromSudokuFile(sudokuFile)[1].getRelatedCells(1), relatedToOne)
+	        deepStrictEqual(Uint8Array.fromSudokuFile(sudokuFile).getRelatedCells(1), relatedToOne)
 		})
 	})
 
@@ -151,8 +167,8 @@ describe('Array', () => {
 				"9 953|618|472"
 			].join('\n')
 
-			deepStrictEqual(Uint8Array.fromSudokuFile(missingOne)[1].getBlankCells(),
-				[ { index: 1, possibleValues: Uint8Array.from([ 1 ])} ])
+			deepStrictEqual(Uint8Array.fromSudokuFile(missingOne).getBlankCells(),
+				[ BlankCell.from({ index: 1, possibleValues: Uint8Array.from([ 1 ])}) ])
 		})
 	})
 
