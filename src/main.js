@@ -9,22 +9,24 @@ const startPuzzle = Uint8Array.fromSudokuFile(sudokuFile)
 
 if(err = startPuzzle.validateSudokuPuzzle()) throw err
 
-const winningBranches = [ ...startPuzzle.getBlankCells().keys() ].reduce((workingBranches, runNumber) => {
-    const newWorkingBranches = workingBranches.reduce((newBranches, oldBranch) => {
+let workingBranches = [ startPuzzle ]
+
+for(let i = 1; i <= startPuzzle.filter(x => x === 0).length; i++) {
+    const newWorkingBranches = []
+
+    for(const oldBranch of workingBranches) {
         const blankCell = oldBranch.getBlankCells()[0]
 
-        for(const possibleValue of blankCell.possibleValues) {
-            newBranches.push(oldBranch.replace(blankCell.index, possibleValue))
+        for(const possibleValue of oldBranch.getRelatedCells(blankCell.index).getMissingDigits()) {
+            newWorkingBranches.push(oldBranch.replace(blankCell.index, possibleValue))
         }
+    }
 
-        return newBranches
-    }, [])
+    workingBranches = newWorkingBranches
 
-    console.log(`Completed run ${runNumber + 1} with ${workingBranches.length} branches.`)
+    console.log(`Completed run ${i} with ${workingBranches.length} branches.`)
+}
 
-    return newWorkingBranches
-}, [ startPuzzle ])
-
-writeFileSync('./io/finish.sudoku', winningBranches[0].toSudokuFile())
+writeFileSync('./io/finish.sudoku', workingBranches[0].toSudokuFile())
 
 console.log(`Ran successfully in ${(performance.now() - t0) / 1000} seconds.`)

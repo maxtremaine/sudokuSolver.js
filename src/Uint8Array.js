@@ -23,10 +23,10 @@ Uint8Array.fromSudokuFile = (sudokuFile) => {
 		}))
 }
 
-Uint8Array.prototype.getMissingDigits = function() {
-	return Uint8Array.from(Array(10).keys())
-		.slice(1) // Range from 1 to 9, inclusive.
-		.filter(x => !this.includes(x))
+Uint8Array.prototype.getMissingDigits = function*() {
+	for(let i = 1; i < 10; i++) {
+		if(!this.includes(i)) yield i
+	}
 }
 
 Uint8Array.prototype.hasDuplicates = function() {
@@ -84,14 +84,13 @@ Uint8Array.prototype.getBlankCells = function() {
 			if(cell === 0) {
 				acc.push(BlankCell.from({
 					index,
-					possibleValues: this.getRelatedCells(index)
-						.getMissingDigits()
+					possibleValueCount: [ ...this.getRelatedCells(index).getMissingDigits() ].length
 				}))
 			}
 			
 			return acc
 		}, [])
-		.sort((x, y) => x.possibleValues.length - y.possibleValues.length)
+		.sort((x, y) => x.possibleValues - y.possibleValues)
 }
 
 Uint8Array.prototype.toSudokuFile = function() {
